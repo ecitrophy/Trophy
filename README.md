@@ -1,4 +1,4 @@
-[![CircleCI](https://circleci.com/gh/ecitrophy/Trophy.svg?style=svg)](https://circleci.com/gh/ecitrophy/Trophy)
+CircleCI countinous Integration: [![CircleCI](https://circleci.com/gh/ecitrophy/Trophy.svg?style=svg)](https://circleci.com/gh/ecitrophy/Trophy)
 
 Heroku: https://ecitrophy.herokuapp.com/
 
