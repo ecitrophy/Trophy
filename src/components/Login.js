@@ -1,6 +1,9 @@
 import React from 'react';
 import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
-import { Face, Fingerprint } from '@material-ui/icons'
+import { Face, Fingerprint } from '@material-ui/icons';
+import facebookLogo from "../img/facebook.png";
+import googleLogo from "../img/google.png";
+
 const styles = theme => ({
     margin: {
         margin: theme.spacing.unit * 2,
@@ -29,7 +32,7 @@ class LoginTab extends React.Component {
                             <Fingerprint />
                         </Grid>
                         <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Password" type="password" fullWidth required />
+                            <TextField id="password" label="Password" type="password" fullWidth required />
                         </Grid>
                     </Grid>
                     <Grid container alignItems="center" justify="space-between">
@@ -45,7 +48,14 @@ class LoginTab extends React.Component {
                         </Grid>
                     </Grid>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button variant="outlined" color="primary" style={{ textTransform: "none" }}>Login</Button>
+                        <Button variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Login</Button>
+                    </Grid>
+                    <Grid container justify="center" style={{ marginTop: '10px' }}>
+                        <img src={facebookLogo} alt="Facebook" height={58} width={200}/>
+                        <img src={googleLogo} alt="Facebook" height={58} width={200}/>
+                    </Grid>
+                    <Grid container justify="center" style={{ marginTop: '10px' }}>
+                        <Button variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Sign In</Button>
                     </Grid>
                 </div>
             </Paper>
