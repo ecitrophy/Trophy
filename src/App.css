@@ -18,7 +18,15 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+.App-redeem{
+  margin-top: 60%;
+  height:40%;
+  width:100%;
+}
+.App-redeem_space{
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
 .App-link {
   color: #61dafb;
 }

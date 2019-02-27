@@ -1,8 +1,6 @@
 import React from 'react';
 import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
-import { Face, Fingerprint, Email } from '@material-ui/icons';
-import facebookLogo from "../img/facebook.png";
-import googleLogo from "../img/google.png";
+
 
 const styles = theme => ({
     margin: {
@@ -13,52 +11,30 @@ const styles = theme => ({
     }
 });
 
-class Redeem extends React.Component {
+export class Redeem extends React.Component {
     render() {
-        const { classes } = this.props;
+
         return (
-            <Paper className={classes.padding}>
-                <div className={classes.margin}>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Face />
+          <div className="App-redeem">
+                <img src={require('../img/money.png')} style={{ top:'18%',right:'20%',position:'absolute',width:'250px'}}/>
+                <div  >
+                    <Grid container direction="column" justify="space-between" alignItems="center"   >
+                        <Grid  item md={12} sm={12} xs={12} style={{ marginTop:'30px'}}>
+                            <TextField id="monto" label="Monto" type="text" width="160"  fullWidth  variant="outlined" autoFocus   />
                         </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="username" label="Username" type="text" fullWidth autoFocus required />
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Email />
-                        </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="email" label="Email" type="email" fullWidth required />
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Fingerprint />
-                        </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="password" label="Password" type="password" fullWidth required />
-                        </Grid>
-                    </Grid>
-                    <Grid container spacing={8} alignItems="flex-end">
-                        <Grid item>
-                            <Fingerprint />
-                        </Grid>
-                        <Grid item md={true} sm={true} xs={true}>
-                            <TextField id="confPass" label="Confirm Password" type="password" fullWidth required />
+                        <div  className="App-redeem_space"></div>
+                        <Grid item md={12} sm={12} xs={12} style={{ marginTop:'40px',marginBottom:'100px'}}>
+                            <TextField id="seguridad" label="Código de seguridad" type="text" fullWidth  variant="outlined"   />
                         </Grid>
                     </Grid>
 
+
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Sign In</Button>
+                        <Button variant="outlined" color="primary" style={{ textTransform: "none",padding:'20px', maxWidth: '400px', minWidth: '400px'}}>Cambiar</Button>
                     </Grid>
                 </div>
-            </Paper>
+
+            </div>
         );
     }
 }
-
-export default withStyles(styles)(RegisterTab);
