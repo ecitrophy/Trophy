@@ -148,7 +148,7 @@ class PersistentDrawerLeft extends React.Component {
           <Divider />
           <List>
             {['Juan Gomez'].map((text, index) => (
-              <ListItem button key={text}>
+              <ListItem onClick={rendervista=<Redirect to="/history"/>} button key={text}>
                 <ListItemIcon>{<AccountCircle />}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
