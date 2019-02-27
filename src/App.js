@@ -11,8 +11,7 @@ class App extends Component {
 
         <div>
             <NavBar />
-            {/*<LoginTab/>*/}
-            <BetHistoryTab/>
+            <LoginTab/>
         </div>
     );
   }
