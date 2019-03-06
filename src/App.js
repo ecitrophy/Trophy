@@ -6,7 +6,9 @@ import RegisterTab from "./components/Register.js";
 import NavBar from "./components/NavBar";
 import {Redeem }from "./components/Redeem";
 import BetHistoryTab from "./components/betHistory";
+import LobbyTab from "./components/Lobby";
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
+
 
 
 class App extends Component {
@@ -37,20 +39,21 @@ class App extends Component {
 
     );
     return (
-	<Router>
-  <div>
-  		<div>
-  		    <Switch>
-
-            <Route exact path="/register" component={RegisterView}/>
-            <Route exact path="/" component={LoginView}/>
-            <Route component={InsideApp}/>
-        
-          </Switch>
-  		</div>
-
-    </div>
-	</Router>
+    <LobbyTab/>
+//	<Router>
+//  <div>
+//  		<div>
+//  		    <Switch>
+//
+//            <Route exact path="/register" component={RegisterView}/>
+//            <Route exact path="/" component={LoginView}/>
+//            <Route component={InsideApp}/>
+//
+//          </Switch>
+//  		</div>
+//
+//    </div>
+//	</Router>
     );
   }
 }
