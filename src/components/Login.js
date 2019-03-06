@@ -3,7 +3,8 @@ import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox 
 import { Face, Fingerprint } from '@material-ui/icons';
 import facebookLogo from "../img/facebook.png";
 import googleLogo from "../img/google.png";
-
+import {BrowserRouter as Router, Link, Route,Redirect} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 const styles = theme => ({
     margin: {
         margin: theme.spacing.unit * 2,
@@ -14,6 +15,12 @@ const styles = theme => ({
 });
 
 class LoginTab extends React.Component {
+  renderHistory= () =>{
+   this.props.history.push('/history');
+  };
+  renderRegister= () =>{
+   this.props.history.push('/register');
+  };
     render() {
         const { classes } = this.props;
         return (
@@ -44,18 +51,18 @@ class LoginTab extends React.Component {
                             } label="Remember me" />
                         </Grid>
                         <Grid item>
-                            <Button disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Forgot password ?</Button>
+                            <Button  disableFocusRipple disableRipple style={{ textTransform: "none" }} variant="text" color="primary">Forgot password ?</Button>
                         </Grid>
                     </Grid>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Login</Button>
+                        <Button onClick={this.renderHistory} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Login</Button>
                     </Grid>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
                         <img src={facebookLogo} alt="Facebook" height={58} width={200}/>
                         <img src={googleLogo} alt="Facebook" height={58} width={200}/>
                     </Grid>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Sign In</Button>
+                        <Button onClick={this.renderRegister} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Sign In</Button>
                     </Grid>
                 </div>
             </Paper>
@@ -63,4 +70,4 @@ class LoginTab extends React.Component {
     }
 }
 
-export default withStyles(styles)(LoginTab);
+export default withRouter (withStyles(styles)(LoginTab));
