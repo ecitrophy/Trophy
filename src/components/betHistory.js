@@ -33,111 +33,109 @@ class BetHistoryTab extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <Paper className={classes.padding}>
-                <div className={classes.margin}>
-                    <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <h3>LOL Match</h3>
-                    </Grid>
-                    <Paper className={classes.root} elevation={1}>
-                        <Typography variant="h5" component="h3">
-                            Creator:
-                        </Typography>
-                        <Grid container spacing={16}>
-                            <Grid item md={true} sm={true} xs={true}>
-                                <List className={classes.root}>
-                                    <ListItem alignItems="flex-start">
-                                        <ListItemAvatar>
-                                            <Avatar>
-                                                <Mood/>
-                                            </Avatar>
-                                            {/*<Avatar alt="Avatar" src={googleLogo} />*/}
-                                        </ListItemAvatar>
-                                        <ListItemText
-                                            primary="juan.gomez345"
-                                            secondary={
-                                                <React.Fragment>
-                                                    <Typography component="span" className={classes.inline} color="textPrimary">
-                                                        Top bettor
-                                                    </Typography>
-                                                </React.Fragment>
-                                            }
-                                        />
-                                    </ListItem>
-                                </List>
-                            </Grid>
-                            <Grid item md={true} sm={true} xs={true}>
-                                <Typography variant="h5" component="h3">
-                                    Price: $50
-                                </Typography>
-                            </Grid>
+            <div className={classes.margin}>
+                <Grid container justify="center" style={{ marginTop: '10px' }}>
+                    <h3>LOL Match</h3>
+                </Grid>
+                <Paper className={classes.root} elevation={1}>
+                    <Typography variant="h5" component="h3">
+                        Creator:
+                    </Typography>
+                    <Grid container spacing={16}>
+                        <Grid item md={true} sm={true} xs={true}>
+                            <List className={classes.root}>
+                                <ListItem alignItems="flex-start">
+                                    <ListItemAvatar>
+                                        <Avatar>
+                                            <Mood/>
+                                        </Avatar>
+                                        {/*<Avatar alt="Avatar" src={googleLogo} />*/}
+                                    </ListItemAvatar>
+                                    <ListItemText
+                                        primary="juan.gomez345"
+                                        secondary={
+                                            <React.Fragment>
+                                                <Typography component="span" className={classes.inline} color="textPrimary">
+                                                    Top bettor
+                                                </Typography>
+                                            </React.Fragment>
+                                        }
+                                    />
+                                </ListItem>
+                            </List>
                         </Grid>
-                    </Paper>
-
-                    <List>
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    <Mood/>
-                                </Avatar>
-                                {/*<Avatar alt="Avatar" src={googleLogo} />*/}
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary="sergiorLol123"
-                                secondary="Begginer bettor"
-                            />
-                        </ListItem>
-                        <Divider/>
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    <Mood/>
-                                </Avatar>
-                                {/*<Avatar alt="Avatar" src={googleLogo} />*/}
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary="jigsawer35"
-                                secondary="Average bettor"
-                            />
-                        </ListItem>
-                        <Divider/>
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    <Mood/>
-                                </Avatar>
-                                {/*<Avatar alt="Avatar" src={googleLogo} />*/}
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary="juan.gomez345"
-                                secondary="Top bettor"
-                            />
-                            <ListItemSecondaryAction>
-                                <img src={trophyLogo} width={50} height={50}/>
-                                {/*<ListItemAvatar>*/}
-                                {/*<Avatar alt="Avatar" src={googleLogo} />*/}
-                                {/*</ListItemAvatar>*/}
-                            </ListItemSecondaryAction>
-                        </ListItem>
-                        <Divider/>
-                        <ListItem>
-                            <ListItemAvatar>
-                                <Avatar>
-                                    <Mood/>
-                                </Avatar>
-                                {/*<Avatar alt="Avatar" src={googleLogo} />*/}
-                            </ListItemAvatar>
-                            <ListItemText
-                                primary="kasjdu"
-                                secondary="Average bettor"
-                            />
-                        </ListItem>
-                    </List>
-
-                    <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Return</Button>
+                        <Grid item md={true} sm={true} xs={true}>
+                            <Typography variant="h5" component="h3">
+                                Price: $50
+                            </Typography>
+                        </Grid>
                     </Grid>
-                </div>
-            </Paper>
+                </Paper>
+
+                <List>
+                    <ListItem>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <Mood/>
+                            </Avatar>
+                            {/*<Avatar alt="Avatar" src={googleLogo} />*/}
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary="sergiorLol123"
+                            secondary="Begginer bettor"
+                        />
+                    </ListItem>
+                    <Divider/>
+                    <ListItem>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <Mood/>
+                            </Avatar>
+                            {/*<Avatar alt="Avatar" src={googleLogo} />*/}
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary="jigsawer35"
+                            secondary="Average bettor"
+                        />
+                    </ListItem>
+                    <Divider/>
+                    <ListItem>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <Mood/>
+                            </Avatar>
+                            {/*<Avatar alt="Avatar" src={googleLogo} />*/}
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary="juan.gomez345"
+                            secondary="Top bettor"
+                        />
+                        <ListItemSecondaryAction>
+                            <img src={trophyLogo} width={50} height={50}/>
+                            {/*<ListItemAvatar>*/}
+                            {/*<Avatar alt="Avatar" src={googleLogo} />*/}
+                            {/*</ListItemAvatar>*/}
+                        </ListItemSecondaryAction>
+                    </ListItem>
+                    <Divider/>
+                    <ListItem>
+                        <ListItemAvatar>
+                            <Avatar>
+                                <Mood/>
+                            </Avatar>
+                            {/*<Avatar alt="Avatar" src={googleLogo} />*/}
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary="kasjdu"
+                            secondary="Average bettor"
+                        />
+                    </ListItem>
+                </List>
+
+                <Grid container justify="center" style={{ marginTop: '10px' }}>
+                    <Button variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Return</Button>
+                </Grid>
+            </div>
         );
     }
 }
