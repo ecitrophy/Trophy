@@ -6,7 +6,7 @@ import RegisterTab from "./components/Register.js";
 import NavBar from "./components/NavBar";
 import {Redeem }from "./components/Redeem";
 import BetHistoryTab from "./components/betHistory";
-import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 
 
 class App extends Component {
@@ -27,21 +27,28 @@ class App extends Component {
         <RegisterTab/>
 
     );
+    const InsideApp = () => (
+      <div>
+        <NavBar />
+          <Route path="/redeem" component={RedeemView }/>
+          <Route path="/history" component={HistoryView}/>
 
+      </div>
+
+    );
     return (
 	<Router>
   <div>
   		<div>
-  		    <NavBar />
+  		    <Switch>
 
-
+            <Route exact path="/register" component={RegisterView}/>
+            <Route exact path="/" component={LoginView}/>
+            <Route component={InsideApp}/>
+        
+          </Switch>
   		</div>
-  		<div>
-      <Route exact path="/" component={LoginView}/>
-        <Route path="/redeem" component={RedeemView }/>
-  			<Route path="/history" component={HistoryView}/>
-  			<Route path="/register" component={RegisterView}/>
-      </div>
+
     </div>
 	</Router>
     );
