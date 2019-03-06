@@ -23,7 +23,8 @@ import MaterialIcon from '@material/react-material-icon';
 import TrophyLogo from '../img/TrophyLogo1.png';
 import { Assignment, Alarm, AccountBalance, AssignmentReturn, ExpandLess, ExpandMore, StarBorder, AddShoppingCart, AccountBalanceWallet } from '@material-ui/icons';
 import { Collapse } from '@material-ui/core';
-
+import {BrowserRouter as Router, Link, Route,Redirect} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 const drawerWidth = 240;
 
 const styles = theme => ({
@@ -86,11 +87,14 @@ const styles = theme => ({
   },
 });
 
+
 class PersistentDrawerLeft extends React.Component {
   state = {
     open: false,
     nestedOpen: false
   };
+
+
   handleClick = () => {
     this.setState(state => ({ nestedOpen: !state.nestedOpen }));
   };
@@ -102,6 +106,16 @@ class PersistentDrawerLeft extends React.Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
+  renderRedeem= () =>{
+   this.props.history.push('/redeem');
+  };
+  renderHistory= () =>{
+   this.props.history.push('/history');
+  };
+  renderLogin= () =>{
+   this.props.history.push('/');
+  };
+
 
   render() {
     const { classes, theme } = this.props;
@@ -124,7 +138,7 @@ class PersistentDrawerLeft extends React.Component {
               className={classNames(classes.menuButton, open && classes.hide)}
             >
                 <img src={TrophyLogo} alt="Trophy Logo" height={40}/>
-              
+
             </IconButton>
             <Typography variant="h6" color="inherit" noWrap>
               Trophy
@@ -147,11 +161,15 @@ class PersistentDrawerLeft extends React.Component {
           </div>
           <Divider />
           <List>
+
             {['Juan Gomez'].map((text, index) => (
-              <ListItem onClick={rendervista=<Redirect to="/history"/>} button key={text}>
+              <div  >
+              <ListItem  button key={text}  >
+
                 <ListItemIcon>{<AccountCircle />}</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
+              </div>
             ))}
           </List>
           <List>
@@ -164,7 +182,7 @@ class PersistentDrawerLeft extends React.Component {
           </List>
           <List>
             {['Historial'].map((text, index) => (
-              <ListItem button key={text}>
+              <ListItem onClick={this.renderHistory}  button key={text}>
                 <ListItemIcon>{<Alarm /> }</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
@@ -180,7 +198,7 @@ class PersistentDrawerLeft extends React.Component {
               </ListItem>
               <Collapse in={this.state.nestedOpen} timeout="auto" unmountOnExit>
               <List component="div" disablePadding>
-                  <ListItem button className={classes.nested}>
+                  <ListItem onClick={this.renderRedeem}  button className={classes.nested}>
                   <ListItemIcon>
                       <AddShoppingCart />
                   </ListItemIcon>
@@ -200,13 +218,13 @@ class PersistentDrawerLeft extends React.Component {
           <Divider />
           <List>
             {['Log out'].map((text, index) => (
-                
-              <ListItem button  key={text}>
+
+              <ListItem button onClick={this.renderLogin}  key={text}>
                 <ListItemIcon>{<AssignmentReturn />}</ListItemIcon>
                 <ListItemText inset primary={text} />
-                
+
               </ListItem>
-              
+
             ))}
           </List>
         </Drawer>
@@ -216,7 +234,7 @@ class PersistentDrawerLeft extends React.Component {
           })}
         >
           <div className={classes.drawerHeader} />
-          
+
         </main>
       </div>
     );
@@ -228,5 +246,4 @@ PersistentDrawerLeft.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(PersistentDrawerLeft);
-
+export default withRouter (withStyles(styles, { withTheme: true })(PersistentDrawerLeft));
