@@ -3,7 +3,8 @@ import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox 
 import { Face, Fingerprint, Email } from '@material-ui/icons';
 import facebookLogo from "../img/facebook.png";
 import googleLogo from "../img/google.png";
-
+import {BrowserRouter as Router, Link, Route,Redirect} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 const styles = theme => ({
     margin: {
         margin: theme.spacing.unit * 2,
@@ -14,7 +15,11 @@ const styles = theme => ({
 });
 
 class RegisterTab extends React.Component {
+    renderLogin= () =>{
+               this.props.history.push('/');
+              };
     render() {
+
         const { classes } = this.props;
         return (
             <Paper className={classes.padding}>
@@ -53,7 +58,7 @@ class RegisterTab extends React.Component {
                     </Grid>
 
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Sign In</Button>
+                        <Button onClick={this.renderLogin} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Sign In</Button>
                     </Grid>
                 </div>
             </Paper>
@@ -61,4 +66,4 @@ class RegisterTab extends React.Component {
     }
 }
 
-export default withStyles(styles)(RegisterTab);
+export default withRouter (withStyles(styles)(RegisterTab));

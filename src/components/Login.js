@@ -21,6 +21,9 @@ class LoginTab extends React.Component {
   renderRegister= () =>{
    this.props.history.push('/register');
   };
+  renderLobby= () =>{
+       this.props.history.push('/lobby');
+      };
     render() {
         const { classes } = this.props;
         return (
@@ -55,7 +58,7 @@ class LoginTab extends React.Component {
                         </Grid>
                     </Grid>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button onClick={this.renderHistory} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Login</Button>
+                        <Button onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Login</Button>
                     </Grid>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
                         <img src={facebookLogo} alt="Facebook" height={58} width={200}/>

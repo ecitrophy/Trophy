@@ -29,31 +29,36 @@ class App extends Component {
         <RegisterTab/>
 
     );
+    const LobbyView = () => (
+            <LobbyTab/>
+
+        );
+
     const InsideApp = () => (
       <div>
         <NavBar />
           <Route path="/redeem" component={RedeemView }/>
           <Route path="/history" component={HistoryView}/>
-
+          <Route path="/lobby" component={LobbyView}/>
       </div>
 
     );
     return (
-    <LobbyTab/>
-//	<Router>
-//  <div>
-//  		<div>
-//  		    <Switch>
-//
-//            <Route exact path="/register" component={RegisterView}/>
-//            <Route exact path="/" component={LoginView}/>
-//            <Route component={InsideApp}/>
-//
-//          </Switch>
-//  		</div>
-//
-//    </div>
-//	</Router>
+
+	<Router>
+    <div>
+ 		<div>
+  		    <Switch>
+
+            <Route exact path="/register" component={RegisterView}/>
+            <Route exact path="/" component={LoginView}/>
+            <Route component={InsideApp}/>
+
+          </Switch>
+  		</div>
+
+    </div>
+	</Router>
     );
   }
 }

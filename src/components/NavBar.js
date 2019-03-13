@@ -115,6 +115,9 @@ class PersistentDrawerLeft extends React.Component {
   renderLogin= () =>{
    this.props.history.push('/');
   };
+  renderLobby= () =>{
+     this.props.history.push('/lobby');
+    };
 
 
   render() {
@@ -174,7 +177,7 @@ class PersistentDrawerLeft extends React.Component {
           </List>
           <List>
             {['Lobby'].map((text, index) => (
-              <ListItem button key={text}>
+              <ListItem onClick={this.renderLobby} button key={text}>
                 <ListItemIcon>{<Assignment /> }</ListItemIcon>
                 <ListItemText primary={text} />
               </ListItem>
