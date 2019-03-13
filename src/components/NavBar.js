@@ -110,7 +110,7 @@ class PersistentDrawerLeft extends React.Component {
    this.props.history.push('/redeem');
   };
   renderHistory= () =>{
-   this.props.history.push('/history');
+   this.props.history.push('/lobbyhistory');
   };
   renderLogin= () =>{
    this.props.history.push('/');

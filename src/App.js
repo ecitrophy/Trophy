@@ -8,6 +8,7 @@ import {Redeem }from "./components/Redeem";
 import BetHistoryTab from "./components/betHistory";
 import LobbyTab from "./components/Lobby";
 import StartBet from "./components/StartBet";
+import LobbyHistory from "./components/LobbyHistory";
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 
 
@@ -18,6 +19,9 @@ class App extends Component {
     const LoginView = () => (
      <LoginTab/>
     );
+    const LobbyHistoryView = () => (
+         <LobbyHistory/>
+        );
 
     const RedeemView = () => (
      <Redeem/>
@@ -46,6 +50,7 @@ class App extends Component {
           <Route path="/history" component={HistoryView}/>
           <Route path="/lobby" component={LobbyView}/>
           <Route path="/startbet" component={StartBetView}/>
+          <Route path="/lobbyhistory" component={LobbyHistoryView}/>
       </div>
 
     );
