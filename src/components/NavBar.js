@@ -118,6 +118,9 @@ class PersistentDrawerLeft extends React.Component {
   renderLobby= () =>{
      this.props.history.push('/lobby');
     };
+  renderStartBet= () =>{
+       this.props.history.push('/startbet');
+      };
 
 
   render() {
@@ -167,7 +170,7 @@ class PersistentDrawerLeft extends React.Component {
 
             {['Juan Gomez'].map((text, index) => (
               <div  >
-              <ListItem  button key={text}  >
+              <ListItem onClick={this.renderStartBet} button key={text}  >
 
                 <ListItemIcon>{<AccountCircle />}</ListItemIcon>
                 <ListItemText primary={text} />

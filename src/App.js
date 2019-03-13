@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import {Redeem }from "./components/Redeem";
 import BetHistoryTab from "./components/betHistory";
 import LobbyTab from "./components/Lobby";
+import StartBet from "./components/StartBet";
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 
 
@@ -33,6 +34,10 @@ class App extends Component {
             <LobbyTab/>
 
         );
+     const StartBetView = () => (
+            <StartBet/>
+
+            );
 
     const InsideApp = () => (
       <div>
@@ -40,6 +45,7 @@ class App extends Component {
           <Route path="/redeem" component={RedeemView }/>
           <Route path="/history" component={HistoryView}/>
           <Route path="/lobby" component={LobbyView}/>
+          <Route path="/startbet" component={StartBetView}/>
       </div>
 
     );

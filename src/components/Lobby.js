@@ -9,6 +9,8 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import {BrowserRouter as Router, Link, Route,Redirect} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
     margin: {
@@ -30,21 +32,25 @@ const styles = theme => ({
 });
 
 class LobbyTab extends React.Component {
+    renderBet= () =>{
+       this.props.history.push('/startbet');
+      };
+
     render() {
         const { classes } = this.props;
         return (
             <div>
-                <Paper className={classes.padding}>
+                <Paper onClick={this.renderBet} className={classes.padding}>
                     <Typography variant="h5" component="h3">
                         LOL match
                     </Typography>
                 </Paper>
-                <Paper className={classes.padding}>
+                <Paper onClick={this.renderBet} className={classes.padding}>
                     <Typography variant="h5" component="h3">
                         FIFA Tournament
                     </Typography>
                 </Paper>
-                <Paper className={classes.padding}>
+                <Paper onClick={this.renderBet} className={classes.padding}>
                     <Typography variant="h5" component="h3">
                         FIFA Mini-tournament
                     </Typography>
@@ -55,11 +61,11 @@ class LobbyTab extends React.Component {
                 </Grid>
 
                 <Grid container justify="center" style={{ marginTop: '10px' }}>
-                    <Button variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Create Bet</Button>
+                    <Button  variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Create Bet</Button>
                 </Grid>
             </div>
         );
     }
 }
 
-export default withStyles(styles)(LobbyTab);
+export default withRouter (withStyles(styles)(LobbyTab));
