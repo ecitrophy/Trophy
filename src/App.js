@@ -8,6 +8,7 @@ import {Redeem }from "./components/Redeem";
 import BetHistoryTab from "./components/betHistory";
 import LobbyTab from "./components/Lobby";
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
+import BetCreationTab from "./components/betCreation"
 
 
 
