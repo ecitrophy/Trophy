@@ -170,7 +170,7 @@ class PersistentDrawerLeft extends React.Component {
 
             {['Juan Gomez'].map((text, index) => (
               <div  >
-              <ListItem onClick={this.renderStartBet} button key={text}  >
+              <ListItem  button key={text}  >
 
                 <ListItemIcon>{<AccountCircle />}</ListItemIcon>
                 <ListItemText primary={text} />
