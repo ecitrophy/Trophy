@@ -1,16 +1,12 @@
 import React from 'react';
-import {Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox, Divider} from '@material-ui/core';
-import { Mood } from '@material-ui/icons';
-import trophyLogo from "../img/TrophyLogo1.png";
-import Avatar from "@material-ui/core/Avatar";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import ListItemText from "@material-ui/core/ListItemText";
+import {Paper, withStyles, Grid, TextField, Button, CardMedia, CardContent} from '@material-ui/core';
 import Typography from "@material-ui/core/Typography";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import {BrowserRouter as Router, Link, Route,Redirect} from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import SearchBar from 'material-ui-search-bar';
+import Card from "@material-ui/core/Card";
+import lolImage from '../img/lol.jpg';
+import fifaTournament from '../img/fifa-tournament.jpg';
+import fifaMatch from '../img/fifa-match.jpg';
 
 const styles = theme => ({
     margin: {
@@ -28,6 +24,21 @@ const styles = theme => ({
         ...theme.mixins.gutters(),
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit * 2,
+    },
+    card: {
+        display: 'flex',
+        maxWidth: 800,
+        margin: '0 auto',
+    },
+    cover: {
+        width: 200,
+    },
+    details: {
+        display: 'flex',
+        flexDirection: 'column',
+    },
+    content: {
+        paddingLeft: theme.spacing.unit * 25,
     }
 });
 
@@ -40,27 +51,67 @@ class LobbyHistory extends React.Component {
         const { classes } = this.props;
         return (
             <div>
-                <Paper onClick={this.LobbyHistory} className={classes.padding}>
-                    <Typography variant="h5" component="h3">
-                        LOL match
-                    </Typography>
-                </Paper>
-                <Paper onClick={this.LobbyHistory} className={classes.padding}>
-                    <Typography variant="h5" component="h3">
-                        FIFA Tournament
-                    </Typography>
-                </Paper>
-                <Paper onClick={this.LobbyHistory} className={classes.padding}>
-                    <Typography variant="h5" component="h3">
-                        FIFA Mini-tournament
-                    </Typography>
-                </Paper>
-                <Grid container justify="space-between" style={{ marginTop: '10px' }}>
-                    <TextField label="Search Bet"/>
-                    <Button variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Search</Button>
-                </Grid>
-
-
+                <SearchBar
+                    style={{
+                        margin: '0 auto',
+                        maxWidth: 800
+                    }}
+                />
+                <br/>
+                <br/>
+                <Card onClick={this.LobbyHistory} className={classes.card}>
+                    <CardMedia
+                        className={classes.cover}
+                        image={lolImage}
+                        title="LOL Image"
+                    />
+                    <div className={classes.details}>
+                        <CardContent className={classes.content}>
+                            <Typography component="h5" variant="h5">
+                                LOL Tournament
+                            </Typography>
+                            <Typography variant="subtitle1" color="textSecondary">
+                                Winner: juan.gomez345
+                            </Typography>
+                        </CardContent>
+                    </div>
+                </Card>
+                <br/>
+                <Card onClick={this.LobbyHistory} className={classes.card}>
+                    <CardMedia
+                        className={classes.cover}
+                        image={fifaMatch}
+                        title="FIFA Match Image"
+                    />
+                    <div className={classes.details}>
+                        <CardContent className={classes.content}>
+                            <Typography component="h5" variant="h5">
+                                FIFA Match
+                            </Typography>
+                            <Typography variant="subtitle1" color="textSecondary">
+                                Winner: juan.gomez345
+                            </Typography>
+                        </CardContent>
+                    </div>
+                </Card>
+                <br/>
+                <Card onClick={this.LobbyHistory} className={classes.card}>
+                    <CardMedia
+                        className={classes.cover}
+                        image={fifaTournament}
+                        title="FIFA Mini-tournament Image"
+                    />
+                    <div className={classes.details}>
+                        <CardContent className={classes.content}>
+                            <Typography component="h5" variant="h5">
+                                FIFA Mini-tournament
+                            </Typography>
+                            <Typography variant="subtitle1" color="textSecondary">
+                                Winner: juan.gomez345
+                            </Typography>
+                        </CardContent>
+                    </div>
+                </Card>
             </div>
         );
     }
