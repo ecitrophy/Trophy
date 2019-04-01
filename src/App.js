@@ -8,6 +8,7 @@ import {Redeem }from "./components/Redeem";
 import BetHistoryTab from "./components/betHistory";
 import LobbyTab from "./components/Lobby";
 import StartBet from "./components/StartBet";
+import NewBet from "./components/NewBet";
 import LobbyHistory from "./components/LobbyHistory";
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 
@@ -38,10 +39,14 @@ class App extends Component {
             <LobbyTab/>
 
         );
-     const StartBetView = () => (
-            <StartBet/>
+    const StartBetView = () => (
+          <StartBet/>
 
-            );
+          );
+    const CreateNewBetView = () => (
+          <NewBet/>
+
+    );
 
     const InsideApp = () => (
       <div>
@@ -50,6 +55,7 @@ class App extends Component {
           <Route path="/history" component={HistoryView}/>
           <Route path="/lobby" component={LobbyView}/>
           <Route path="/startbet" component={StartBetView}/>
+          <Route path="/newbet" component={CreateNewBetView}/>
           <Route path="/lobbyhistory" component={LobbyHistoryView}/>
       </div>
 

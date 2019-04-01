@@ -1,16 +1,7 @@
 import React from 'react';
-import {Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox, Divider} from '@material-ui/core';
-import { Mood } from '@material-ui/icons';
-import trophyLogo from "../img/TrophyLogo1.png";
-import Avatar from "@material-ui/core/Avatar";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import ListItemText from "@material-ui/core/ListItemText";
+import {Paper, withStyles, Grid, TextField, Button} from '@material-ui/core';
 import Typography from "@material-ui/core/Typography";
 import Card from '@material-ui/core/Card';
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
-import {BrowserRouter as Router, Link, Route,Redirect} from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import MatchCard from './MatchCard';
 
@@ -62,42 +53,36 @@ class LobbyTab extends React.Component {
        this.props.history.push('/startbet');
       };
 
+    renderNewBet= () =>{
+    this.props.history.push('/newbet');
+    };
+
     render() {
         const { classes } = this.props;
         return (
             <div>
+                <div onClick={this.renderBet}>
                 {this.state.matchesList.map((value,i)=>{
                     return(
                         <MatchCard key={i} 
                                     name={value.name} 
                                     state={value.state} 
                                     creator={value.creator}
-                                    bettors={value.bettors}> 
+                                    bettors={value.bettors} 
+                                    > 
                         </MatchCard>
                     )
                 })}
-                <Card onClick={this.renderBet} className={classes.padding}>
-                    <Typography variant="h5" component="h3">
-                        this.state.matchesList.name
-                    </Typography>
-                </Card>
-                <Paper onClick={this.renderBet} className={classes.padding}>
-                    <Typography variant="h5" component="h3">
-                        FIFA Tournament
-                    </Typography>
-                </Paper>
-                <Paper onClick={this.renderBet} className={classes.padding}>
-                    <Typography variant="h5" component="h3">
-                        FIFA Mini-tournament
-                    </Typography>
-                </Paper>
-                <Grid container justify="space-between" style={{ marginTop: '10px' }}>
-                    <TextField label="Search Bet"/>
-                    <Button variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Search</Button>
+                </div>
+                
+                
+                <Grid container justify="center" style={{ marginTop: '20px' }}>
+                    <TextField label="Search Bet" fullWidth />
+                    <Button variant="outlined"  style={{ marginTop: '40px' }} fullWidth color="primary" style={{ textTransform: "none"}}>Search</Button>
                 </Grid>
 
-                <Grid container justify="center" style={{ marginTop: '10px' }}>
-                    <Button  variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Create Bet</Button>
+                <Grid container justify="center" style={{ marginTop: '20px' }}>
+                    <Button  onClick={this.renderNewBet} variant="outlined" fullWidth color="primary" style={{ textTransform: "none"}}>Create Bet</Button>
                 </Grid>
             </div>
         );

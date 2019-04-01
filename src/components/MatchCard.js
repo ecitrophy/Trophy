@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import Card from '@material-ui/core/Card';
-import PropTypes from 'prop-types';
+
 import {CardContent} from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
-import {Link}  from "react-router-dom";
+
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { withStyles } from '@material-ui/core/styles';
 import { red, orange } from '@material-ui/core/colors';
