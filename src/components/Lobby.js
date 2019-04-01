@@ -8,9 +8,11 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
+import Card from '@material-ui/core/Card';
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import {BrowserRouter as Router, Link, Route,Redirect} from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import MatchCard from './MatchCard';
 
 const styles = theme => ({
     margin: {
@@ -32,6 +34,13 @@ const styles = theme => ({
 });
 
 class LobbyTab extends React.Component {
+    constructor(props){
+        super(props);
+        this.state ={
+            matchesList:[],
+          };
+        
+    }
 
     componentDidMount() {
         fetch('https://gentle-wave-71675.herokuapp.com/matcheslist')
@@ -40,13 +49,13 @@ class LobbyTab extends React.Component {
                 )
             .then(data => {
                 
-                let tasksList = [{description: 'Hacer lab de COSW', responsible: "Juan Gomez", state:"In Progress", date: "01/03/2019"}];
-                data.forEach(function (task) {
-                    //tasksList.push(task)
-                    console.log(task);
+                let matchesList = [{"name":"ECI Lol","creator":"juan.gomez345","bettors":{"user1":15,"user2":0,"user5":15,"user3":15,"user4":15},"state":"WaitingForBets","winner":null,"id":1}];
+                data.forEach(function (match) {
+                    matchesList.push(match)
+                    console.log(match);
 
                 });
-                //this.setState({tasksList: tasksList});
+                this.setState({matchesList: matchesList});
             });
     }
     renderBet= () =>{
@@ -57,11 +66,21 @@ class LobbyTab extends React.Component {
         const { classes } = this.props;
         return (
             <div>
-                <Paper onClick={this.renderBet} className={classes.padding}>
+                {this.state.matchesList.map((value,i)=>{
+                    return(
+                        <MatchCard key={i} 
+                                    name={value.name} 
+                                    state={value.state} 
+                                    creator={value.creator}
+                                    bettors={value.bettors}> 
+                        </MatchCard>
+                    )
+                })}
+                <Card onClick={this.renderBet} className={classes.padding}>
                     <Typography variant="h5" component="h3">
-                        LOL match
+                        this.state.matchesList.name
                     </Typography>
-                </Paper>
+                </Card>
                 <Paper onClick={this.renderBet} className={classes.padding}>
                     <Typography variant="h5" component="h3">
                         FIFA Tournament
