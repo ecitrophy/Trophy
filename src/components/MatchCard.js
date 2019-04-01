@@ -7,19 +7,36 @@ import Typography from '@material-ui/core/Typography';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import { withStyles } from '@material-ui/core/styles';
 import { red, orange } from '@material-ui/core/colors';
+import CardMedia from "@material-ui/core/CardMedia";
+import lolImg from "../img/lol.jpg";
 
 
-const styles = {
+const styles = theme => ({
+    margin: {
+        margin: theme.spacing.unit * 2,
+    },
+    padding: {
+        padding: theme.spacing.unit
+    },
+    bigAvatar: {
+        margin: 10,
+        width: 60,
+        height: 60,
+    },
+    root: {
+        ...theme.mixins.gutters(),
+        paddingTop: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing.unit * 2,
+    },
+    
     card: {
-        flex: 1,
+        display: 'flex',
+        maxWidth: 800,
+        margin: '0 auto',
+    },
+    details: {
+        display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      minWidth: 275,
-      marginBottom: 25,
-      color: orange,
-      
-
     },
     bullet: {
       display: 'inline-block',
@@ -32,8 +49,14 @@ const styles = {
     pos: {
       marginBottom: 12,
     },
+    content: {
+        paddingLeft: theme.spacing.unit * 25,
+    },
+    cover: {
+        width: 200,
+    }
     
-  };
+  });
 
   
 function MatchCard (props){
@@ -41,19 +64,25 @@ function MatchCard (props){
     const { classes } = props;
     return(
     <div >
-        <Card style= {styles.card} >
-            <CardActionArea >
-                <CardContent>
-                    <Typography variant="h5">
+        <br/>
+        <Card  className={classes.card}>
+            <CardMedia
+                className={classes.cover}
+                image={lolImg}
+                title="LOL Image"
+            />
+            <div className={classes.details}>
+                <CardContent className={classes.content}>
+                    <Typography component="h5" variant="h5">
                         {props.name}
                     </Typography>
-                    <Typography color="textSecondary">
-                        {Object.keys(props.bettors).length}/5 bettors
+                    <Typography variant="subtitle1" color="textSecondary">
+                        No. Bettors: {Object.keys(props.bettors).length}/50
                     </Typography>
-                    
                 </CardContent>
-            </CardActionArea>
+            </div>
         </Card>
+        
     </div>
     );
     

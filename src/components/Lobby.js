@@ -1,14 +1,12 @@
 import React from 'react';
-import {Paper, withStyles, Grid, TextField, Button} from '@material-ui/core';
+import { withStyles, Grid, TextField, Button} from '@material-ui/core';
 import Typography from "@material-ui/core/Typography";
 import Card from '@material-ui/core/Card';
 import { withRouter } from 'react-router-dom';
 import MatchCard from './MatchCard';
-import {withStyles, Grid, Button} from '@material-ui/core';
-import Typography from "@material-ui/core/Typography";
-import { withRouter } from 'react-router-dom';
+
 import SearchBar from 'material-ui-search-bar';
-import Card from "@material-ui/core/Card";
+
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import lolImg from "../img/lol.jpg";
@@ -86,29 +84,7 @@ class LobbyTab extends React.Component {
         const { classes } = this.props;
         return (
             <div>
-                <div onClick={this.renderBet}>
-                {this.state.matchesList.map((value,i)=>{
-                    return(
-                        <MatchCard key={i} 
-                                    name={value.name} 
-                                    state={value.state} 
-                                    creator={value.creator}
-                                    bettors={value.bettors} 
-                                    > 
-                        </MatchCard>
-                    )
-                })}
-                </div>
                 
-                
-                <Grid container justify="center" style={{ marginTop: '20px' }}>
-                    <TextField label="Search Bet" fullWidth />
-                    <Button variant="outlined"  style={{ marginTop: '40px' }} fullWidth color="primary" style={{ textTransform: "none"}}>Search</Button>
-                </Grid>
-
-                <Grid container justify="center" style={{ marginTop: '20px' }}>
-                    <Button  onClick={this.renderNewBet} variant="outlined" fullWidth color="primary" style={{ textTransform: "none"}}>Create Bet</Button>
-                </Grid>
                 <SearchBar
                     style={{
                         margin: '0 auto',
@@ -171,8 +147,21 @@ class LobbyTab extends React.Component {
                     </div>
                 </Card>
                 <br/>
+                <div onClick={this.renderBet}>
+                {this.state.matchesList.map((value,i)=>{
+                    return(
+                        <MatchCard className={classes.card} key={i} 
+                                    name={value.name} 
+                                    state={value.state} 
+                                    creator={value.creator}
+                                    bettors={value.bettors} 
+                                    > 
+                        </MatchCard>
+                    )
+                })}
+                </div>
                 <Grid container justify="center" style={{ marginTop: '10px' }}>
-                    <Button  variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Create New Bet</Button>
+                    <Button  onClick={this.renderNewBet} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Create New Bet</Button>
                 </Grid>
             </div>
         );
