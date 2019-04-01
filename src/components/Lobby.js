@@ -32,6 +32,23 @@ const styles = theme => ({
 });
 
 class LobbyTab extends React.Component {
+
+    componentDidMount() {
+        fetch('https://gentle-wave-71675.herokuapp.com/matcheslist')
+            .then(
+                response => response.json()
+                )
+            .then(data => {
+                
+                let tasksList = [{description: 'Hacer lab de COSW', responsible: "Juan Gomez", state:"In Progress", date: "01/03/2019"}];
+                data.forEach(function (task) {
+                    //tasksList.push(task)
+                    console.log(task);
+
+                });
+                //this.setState({tasksList: tasksList});
+            });
+    }
     renderBet= () =>{
        this.props.history.push('/startbet');
       };
