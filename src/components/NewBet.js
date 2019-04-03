@@ -69,18 +69,29 @@ class NewBet extends React.Component {
   };
 
   handleSubmit(e){
+      var json = {"name":this.state.name,"creator":"juan.gomez345","bettors":{"user1":15,"user2":0,"user5":15,"user3":15,"user4":15},"state":"WaitingForBets","winner":null,"id":1};
+        console.log(JSON.stringify(json));
+      fetch('https://gentle-wave-71675.herokuapp.com/matcheslist', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(json)
+        })
+      console.log("handkle submiit");
         /*let data = new FormData();
-        data.append('file', this.state.file);
-
-        this.axios.post('files', data)
+        data.append('file', this.state.file);*/
+        
+        /*this.axios.post('http://localhost:8080/matcheslist', json)
             .then(function (response) {
-                console.log("file uploaded!", data);
+                console.log("Match successfully added!");
         })
         .catch(function (error) {
-            console.log("failed file upload", error);
-        });
+            console.log("failed post");
+        });*/
     console.log("handleeeee");
-      e.preventDefault();
+      /*e.preventDefault();
       var parse = JSON.parse(localStorage.tasks);
       parse.push(this.state);
       localStorage.tasks = JSON.stringify(parse);
