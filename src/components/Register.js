@@ -12,7 +12,10 @@ const styles = theme => ({
 });
 
 class RegisterTab extends React.Component {
-
+  constructor(props) {
+      super(props);
+      localStorage.setItem("accessToken","" );
+  }
     renderLogin= () =>{
                this.props.history.push('/');
               };
