@@ -46,7 +46,7 @@ class RegisterTab extends React.Component {
   handleSubmit() {
 
 
-      axios.post("http://localhost:8080/user/register",
+      axios.post("https://gentle-wave-71675.herokuapp.com/user/register",
           {
               username: this.state.username,
               name: this.state.name,

@@ -45,7 +45,7 @@ class LoginTab extends React.Component {
   handleSubmit() {
 
 
-      axios.post("http://localhost:8080/user/login",
+      axios.post("https://gentle-wave-71675.herokuapp.com/user/login",
           {
               email: this.state.email,
               password: this.state.password
