@@ -146,7 +146,6 @@ class LobbyTab extends React.Component {
                         </CardContent>
                     </div>
                 </Card>
-                <br/>
                 <div onClick={this.renderBet}>
                 {this.state.matchesList.map((value,i)=>{
                     return(
