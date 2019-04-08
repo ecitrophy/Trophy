@@ -69,7 +69,7 @@ class NewBet extends React.Component {
   };
 
   handleSubmit(e){
-      var json = {"name":this.state.name,"creator":"juan.gomez345","bettors":{"user1":15,"user2":0,"user5":15,"user3":15,"user4":15},"state":"WaitingForBets","winner":null,"id":1};
+      var json = {"name":this.state.name,"creator":"juan.gomez345","bettors":{},"state":"WaitingForBets","winner":null,"id":1};
         console.log(JSON.stringify(json));
       fetch('https://gentle-wave-71675.herokuapp.com/matcheslist', {
           method: 'POST',
