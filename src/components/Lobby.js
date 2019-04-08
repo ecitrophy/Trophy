@@ -53,7 +53,7 @@ class LobbyTab extends React.Component {
         this.state ={
             matchesList:[],
           };
-        
+
     }
 
     componentDidMount() {
@@ -62,7 +62,7 @@ class LobbyTab extends React.Component {
                 response => response.json()
                 )
             .then(data => {
-                
+
                 let matchesList = [{"name":"ECI Lol","creator":"juan.gomez345","bettors":{"user1":15,"user2":0,"user5":15,"user3":15,"user4":15},"state":"WaitingForBets","winner":null,"id":1}];
                 data.forEach(function (match) {
                     matchesList.push(match)
@@ -84,7 +84,7 @@ class LobbyTab extends React.Component {
         const { classes } = this.props;
         return (
             <div>
-                
+
                 <SearchBar
                     style={{
                         margin: '0 auto',
@@ -149,12 +149,12 @@ class LobbyTab extends React.Component {
                 <div onClick={this.renderBet}>
                 {this.state.matchesList.map((value,i)=>{
                     return(
-                        <MatchCard className={classes.card} key={i} 
-                                    name={value.name} 
-                                    state={value.state} 
+                        <MatchCard className={classes.card} key={i}
+                                    name={value.name}
+                                    state={value.state}
                                     creator={value.creator}
-                                    bettors={value.bettors} 
-                                    > 
+                                    bettors={value.bettors}
+                                    >
                         </MatchCard>
                     )
                 })}

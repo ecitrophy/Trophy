@@ -15,6 +15,18 @@ import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 
 
 class App extends Component {
+  
+  //   updateToken() {
+  //    this.setState({token: localStorage.getItem('accessToken')});
+  //    history.push('/lobby');
+  // };
+  // constructor(props) {
+  //     super(props);
+  //     this.state = {
+  //         token: localStorage.getItem('accessToken')
+  //     };
+  //     this.updateToken = this.updateToken.bind(this);
+  // }
 
   render() {
     const LoginView = () => (
@@ -48,6 +60,7 @@ class App extends Component {
 
     );
 
+
     const InsideApp = () => (
       <div>
         <NavBar />
@@ -69,7 +82,8 @@ class App extends Component {
 
             <Route exact path="/register" component={RegisterView}/>
             <Route exact path="/" component={LoginView}/>
-            <Route component={InsideApp}/>
+            {localStorage.getItem('accessToken')!=null&&localStorage.getItem('accessToken')!=""?  <Route component={InsideApp}/>:<div></div>}
+
 
           </Switch>
   		</div>

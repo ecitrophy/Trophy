@@ -65,9 +65,11 @@ class NewBet extends React.Component {
   handleInputChange(e) {
     this.setState({
         file: e.target.files[0]
-    });                
+    });
   };
-
+  renderLobby= () =>{
+     this.props.history.push('/lobby');
+    };
   handleSubmit(e){
       var json = {"name":this.state.name,"creator":"juan.gomez345","bettors":{},"state":"WaitingForBets","winner":null,"id":1};
         console.log(JSON.stringify(json));
@@ -79,10 +81,15 @@ class NewBet extends React.Component {
           },
           body: JSON.stringify(json)
         })
+  .then((responseJson) => {
+    alert("se creó la partida");
+    //this.props.history.push('/lobby');
+  })
       console.log("handkle submiit");
+
         /*let data = new FormData();
         data.append('file', this.state.file);*/
-        
+
         /*this.axios.post('http://localhost:8080/matcheslist', json)
             .then(function (response) {
                 console.log("Match successfully added!");
@@ -134,7 +141,7 @@ class NewBet extends React.Component {
             </MenuItem>
           ))}
         </TextField>
-        
+
         <TextField
           id="standard-full-width"
           label="Description"
@@ -147,16 +154,16 @@ class NewBet extends React.Component {
           }}
         />
 
-        
-        
+
+
 
         <Button type="submit"
         fullWidth
         color="primary"
         className="submit" onClick={this.handleSubmit}> Submit</Button>
 
-        <Link fullWidth to="/">
-            <Button type="submit"
+        <Link fullWidth to="/lobby">
+            <Button
                     
                     color="primary"
                     className="submit" > Back
