@@ -10,6 +10,8 @@ import LobbyTab from "./components/Lobby";
 import StartBet from "./components/StartBet";
 import NewBet from "./components/NewBet";
 import LobbyHistory from "./components/LobbyHistory";
+import Profile from "./components/Profile";
+import {Exchange} from "./components/Exchange";
 import {BrowserRouter as Router, Link, Route, Switch} from 'react-router-dom';
 
 
@@ -33,31 +35,39 @@ class App extends Component {
      <LoginTab/>
     );
     const LobbyHistoryView = () => (
-         <LobbyHistory/>
-        );
+        <LobbyHistory/>
+    );
 
     const RedeemView = () => (
-     <Redeem/>
+        <Redeem/>
     );
+
     const HistoryView = () => (
-     <BetHistoryTab/>
+        <BetHistoryTab/>
     );
 
     const RegisterView = () => (
         <RegisterTab/>
-
     );
+
     const LobbyView = () => (
-            <LobbyTab/>
+        <LobbyTab/>
+    );
 
-        );
     const StartBetView = () => (
-          <StartBet/>
+        <StartBet/>
+    );
 
-          );
     const CreateNewBetView = () => (
-          <NewBet/>
+        <NewBet/>
+    );
 
+    const ProfileView = () => (
+        <Profile/>
+    );
+
+    const ExchangeView = () => (
+        <Exchange/>
     );
 
 
@@ -70,6 +80,8 @@ class App extends Component {
           <Route path="/startbet" component={StartBetView}/>
           <Route path="/newbet" component={CreateNewBetView}/>
           <Route path="/lobbyhistory" component={LobbyHistoryView}/>
+          <Route path="/profile" component={ProfileView}/>
+          <Route path="/exchange" component={ExchangeView}/>
       </div>
 
     );
