@@ -115,11 +115,17 @@ class PersistentDrawerLeft extends React.Component {
    this.props.history.push('/');
   };
   renderLobby= () =>{
-     this.props.history.push('/lobby');
-    };
+    this.props.history.push('/lobby');
+  };
   renderStartBet= () =>{
-       this.props.history.push('/startbet');
-      };
+    this.props.history.push('/startbet');
+  };
+  renderProfile = () => {
+    this.props.history.push('/profile')
+  };
+  renderExchange = () => {
+    this.props.history.push('/exchange')
+  };
 
 
   render() {
@@ -170,7 +176,7 @@ class PersistentDrawerLeft extends React.Component {
 
             {['Juan Gomez'].map((text, index) => (
               <div  >
-              <ListItem  button key={text}  >
+              <ListItem onClick={this.renderProfile} button key={text}  >
 
                 <ListItemIcon>{<AccountCircle />}</ListItemIcon>
                 <ListItemText primary={text} />
@@ -210,7 +216,7 @@ class PersistentDrawerLeft extends React.Component {
                   </ListItemIcon>
                   <ListItemText inset primary="Comprar" />
                   </ListItem>
-                  <ListItem button className={classes.nested}>
+                  <ListItem onClick={this.renderExchange} button className={classes.nested}>
                   <ListItemIcon>
                       <StarBorder />
                   </ListItemIcon>
