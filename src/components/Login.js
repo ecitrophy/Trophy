@@ -45,12 +45,23 @@ class LoginTab extends React.Component {
   handleSubmit() {
 
 
-      axios.post("https://gentle-wave-71675.herokuapp.com/user/login",
+      axios.post("http://localhost:8080/user/login",
           {
               email: this.state.email,
               password: this.state.password
           }).then((response) => {
               localStorage.setItem("accessToken", response.data.accessToken);
+              axios.get("http://localhost:8080/api/user/" + this.state.email,{
+                headers: {
+                    'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
+
+                  },
+              }).then((response) =>{
+                  let userInfo = response.data;
+                  userInfo.password = "*******";
+                  localStorage.setItem("user", JSON.stringify(userInfo));
+                  console.log(response.data);
+              })
               setTimeout(function (){}, 100);
               this.props.history.push('/lobby');
       }).catch(function (error) {

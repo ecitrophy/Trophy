@@ -36,6 +36,7 @@ class Profile extends React.Component {
 
     render() {
         const { classes } = this.props;
+        const user = JSON.parse(localStorage.getItem('user'));
         return (
             <div className={classes.margin}>
                 <ListItem alignItems="flex-start">
@@ -43,11 +44,11 @@ class Profile extends React.Component {
                         <Avatar alt="Remy Sharp" src={juanNicolasImage} className={classes.bigAvatar}/>
                     </ListItemAvatar>
                     <ListItemText
-                        primary="nicolas.gomez345"
+                        primary= {user.userName}
                         secondary={
                             <React.Fragment>
                                 <Typography component="span" className={classes.inline} color="textPrimary">
-                                    Top Bettor
+                                Top Bettor
                                 </Typography>
                                 {" — Ranking Position: 50"}
                                 <br/>

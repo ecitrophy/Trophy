@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import MatchCard from './MatchCard';
 
 import SearchBar from 'material-ui-search-bar';
+import {AxiosInstance} from "../AxiosInstance";
 
 
 const styles = theme => ({
@@ -35,15 +36,13 @@ class LobbyTab extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/matcheslist')
-            .then(
-                response => response.json()
-                )
-            .then(data => {
+        AxiosInstance.getInstance().get("/matcheslist")
+            
+            .then(response => {
 
                 //let matchesList = [{"name":"ECI Lol","creator":"juan.gomez345","bettors":{"user1":15,"user2":0,"user5":15,"user3":15,"user4":15},"state":"WaitingForBets","winner":null,"id":1}];
                 let matchesList = [];
-                data.forEach(function (match) {
+                response.data.forEach(function (match) {
                     matchesList.push(match)
                     console.log(match);
 

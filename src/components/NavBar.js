@@ -131,6 +131,7 @@ class PersistentDrawerLeft extends React.Component {
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
+    const user = JSON.parse(localStorage.getItem('user'));
 
     return (
       <div className={classes.root}>
@@ -178,7 +179,7 @@ class PersistentDrawerLeft extends React.Component {
               <ListItem onClick={this.renderProfile} button  >
 
                 <ListItemIcon>{<AccountCircle />}</ListItemIcon>
-                <ListItemText primary='Juan Gomez' />
+                <ListItemText primary= {user.userName} />
               </ListItem>
               </div>
           </List>

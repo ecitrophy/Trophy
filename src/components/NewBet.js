@@ -57,6 +57,7 @@ class NewBet extends React.Component {
     multiline: 'Controlled',
     currency: '',
     file: null,
+    user: JSON.parse(localStorage.getItem('user'))
   };
 
   handleChange = name => event => {
@@ -72,7 +73,7 @@ class NewBet extends React.Component {
      this.props.history.push('/lobby');
     };
   handleSubmit(e){
-      var json = {"name":this.state.name,"creator":"juan.gomez345","bettors":[{"username":"test-frontend1", "bet":"10"}, {"username":"test-frontend2", "bet":"15"}],"state":"WaitingForBets","winner":null,"id":this.state.id, "currentBet":0};
+      var json = {"name":this.state.name,"creator": this.state.user.userName,"bettors":[{"username":"test-frontend1", "bet":"10"}, {"username":"test-frontend2", "bet":"15"}],"state":"WaitingForBets","winner":null,"id":this.state.id, "currentBet":0};
         console.log(JSON.stringify(json));
       fetch('http://localhost:8080/matcheslist', {
           method: 'POST',
@@ -86,6 +87,8 @@ class NewBet extends React.Component {
     this.setState({id: this.state.id + 1});
     alert("se creó la partida");
     //this.props.history.push('/lobby');
+  }).catch(function(){
+    
   })
 
         /*let data = new FormData();

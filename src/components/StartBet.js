@@ -7,7 +7,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import { withRouter } from 'react-router-dom';
 
 const styles = theme => ({
@@ -47,7 +46,10 @@ class StartBet extends React.Component {
             
                 this.setState({match: data})
                 console.log(this.state.match.bettors);
-            });
+            }).catch(function(){
+                alert('Ha ocurrido un error: Apuesta no existe');
+                
+              });
     }
     renderLobby= () =>{
                  this.props.history.push('/lobby');
@@ -66,7 +68,7 @@ class StartBet extends React.Component {
                     <Grid container spacing={16}>
                         <Grid item md={true} sm={true} xs={true}>
                             <List className={classes.root}>
-                                <ListItem  alignItems="flex-start">
+                                <ListItem  keky='creator' alignItems="flex-start">
                                     <ListItemAvatar>
                                         <Avatar>
                                             <Mood/>
@@ -90,7 +92,7 @@ class StartBet extends React.Component {
                         </Grid>
                         <Grid item md={true} sm={true} xs={true}>
                             <Typography variant="h5" component="h3">
-                                Bet: {this.state.match.currentBet}
+                                Total Bet: {this.state.match.currentBet}
                             </Typography>
                         </Grid>
                     </Grid>
@@ -122,7 +124,7 @@ class StartBet extends React.Component {
                 </List>
 
                 <Grid container justify="center" style={{ marginTop: '10px' }}>
-                    <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Start</Button>
+                    <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Back</Button>
                 </Grid>
             </div>
         );
