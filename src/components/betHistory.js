@@ -1,5 +1,5 @@
 import React from 'react';
-import {Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox, Divider} from '@material-ui/core';
+import {Paper, withStyles, Grid, Button,  Divider} from '@material-ui/core';
 import { Mood } from '@material-ui/icons';
 import trophyLogo from "../img/TrophyLogo1.png";
 import Avatar from "@material-ui/core/Avatar";
@@ -112,7 +112,7 @@ class BetHistoryTab extends React.Component {
                             secondary="Top bettor"
                         />
                         <ListItemSecondaryAction>
-                            <img src={trophyLogo} width={50} height={50}/>
+                            <img src={trophyLogo} width={50} height={50} alt="logo"/>
                             {/*<ListItemAvatar>*/}
                             {/*<Avatar alt="Avatar" src={googleLogo} />*/}
                             {/*</ListItemAvatar>*/}

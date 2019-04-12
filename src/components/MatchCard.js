@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from '@material-ui/core/Card';
 
 import {CardContent} from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
+import { withRouter } from 'react-router-dom';
 
-import CardActionArea from '@material-ui/core/CardActionArea';
 import { withStyles } from '@material-ui/core/styles';
-import { red, orange } from '@material-ui/core/colors';
+
 import CardMedia from "@material-ui/core/CardMedia";
 import lolImg from "../img/lol.jpg";
 
@@ -31,8 +31,9 @@ const styles = theme => ({
     
     card: {
         display: 'flex',
-        maxWidth: 800,
-        margin: '0 auto',
+        minWidth: 340,
+        margin: 20,
+        cursor: 'pointer',
     },
     details: {
         display: 'flex',
@@ -50,44 +51,49 @@ const styles = theme => ({
       marginBottom: 12,
     },
     content: {
-        paddingLeft: theme.spacing.unit * 25,
+        //paddingLeft: theme.spacing.unit * 25,
     },
     cover: {
-        width: 200,
+        width: 150,
     }
     
   });
 
   
-function MatchCard (props){
+class MatchCard extends React.Component {
 
-    const { classes } = props;
-    return(
-    <div >
-        <br/>
-        <Card  className={classes.card}>
-            <CardMedia
-                className={classes.cover}
-                image={lolImg}
-                title="LOL Image"
-            />
-            <div className={classes.details}>
-                <CardContent className={classes.content}>
-                    <Typography component="h5" variant="h5">
-                        {props.name}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        No. Bettors: {Object.keys(props.bettors).length}/50
-                    </Typography>
-                </CardContent>
-            </div>
-        </Card>
-        
-    </div>
-    );
+    
+    renderBet= () =>{
+        this.props.history.push('/startbet/' + this.props.id);
+    };
+    render() {
+        const { classes } = this.props;
+        return(
+        <div onClick={this.renderBet}>
+            <Card  className={classes.card}>
+                <CardMedia
+                    className={classes.cover}
+                    image={lolImg}
+                    title="LOL Image"
+                />
+                <div className={classes.details}>
+                    <CardContent className={classes.content}>
+                        <Typography component="h5" variant="h5">
+                            {this.props.name}
+                        </Typography>
+                        <Typography variant="subtitle1" color="textSecondary">
+                            No. Bettors: {Object.keys(this.props.bettors).length}/50
+                        </Typography>
+                    </CardContent>
+                </div>
+            </Card>
+            
+        </div>
+        );
+    };
     
 }
 
 
 
-export default withStyles(styles)(MatchCard);
+export default withRouter(withStyles(styles)(MatchCard));

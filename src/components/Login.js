@@ -51,7 +51,7 @@ class LoginTab extends React.Component {
               password: this.state.password
           }).then((response) => {
               localStorage.setItem("accessToken", response.data.accessToken);
-              setTimeout('', 100);
+              setTimeout(function (){}, 100);
               this.props.history.push('/lobby');
       }).catch(function (error) {
           console.log(error);

@@ -1,11 +1,8 @@
 import React from 'react';
-import Grid from "@material-ui/core/Grid";
 import Avatar from "@material-ui/core/Avatar";
 import {withStyles, Button} from "@material-ui/core";
 import {withRouter} from "react-router-dom";
 import juanNicolasImage from '../img/JuanNicolas.jpeg';
-import List from "./betHistory";
-import {Mood} from "@material-ui/icons";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";

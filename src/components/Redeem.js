@@ -1,22 +1,14 @@
 import React from 'react';
-import { Paper, withStyles, Grid, TextField, Button, FormControlLabel, Checkbox } from '@material-ui/core';
+import { Grid, TextField, Button} from '@material-ui/core';
 
 
-const styles = theme => ({
-    margin: {
-        margin: theme.spacing.unit * 2,
-    },
-    padding: {
-        padding: theme.spacing.unit
-    }
-});
 
 export class Redeem extends React.Component {
     render() {
 
         return (<div  >
                     <Grid container direction="column" justify="space-between" alignItems="center"   >
-                        <img src={require('../img/TrophyPoints.png')} style={{width:'250px'}}/>
+                        <img src={require('../img/TrophyPoints.png')} style={{width:'250px'}} alt="redeem"/>
                         <Grid  item md={12} sm={12} xs={12} style={{ marginTop:'30px'}}>
                             <TextField id="monto" label="Monto" type="text" width="160"  fullWidth  variant="outlined" autoFocus   />
                         </Grid>

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Paper, withStyles, Grid, TextField, Button, CardMedia, CardContent} from '@material-ui/core';
+import {withStyles, CardMedia, CardContent} from '@material-ui/core';
 import Typography from "@material-ui/core/Typography";
 import { withRouter } from 'react-router-dom';
 import SearchBar from 'material-ui-search-bar';

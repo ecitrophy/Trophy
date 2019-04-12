@@ -29,7 +29,26 @@ const styles = theme => ({
     }
 });
 
+
 class StartBet extends React.Component {
+    constructor(props){
+        super(props);
+        this.state ={
+            match:{},
+          };
+
+    }
+    componentDidMount(){
+        fetch('http://localhost:8080/matcheslist/' + this.props.match.params.id )
+            .then(
+                response => response.json()
+                )
+            .then(data => {
+            
+                this.setState({match: data})
+                console.log(data);
+            });
+    }
     renderLobby= () =>{
                  this.props.history.push('/lobby');
                 };
@@ -38,11 +57,11 @@ class StartBet extends React.Component {
         return (
             <div className={classes.margin}>
                 <Grid container justify="center" style={{ marginTop: '10px' }}>
-                    <h1>LOL Match</h1>
+                    <h1>{this.state.match.name}</h1>
                 </Grid>
                 <Paper className={classes.root} elevation={1}>
                     <Typography variant="h5" component="h3">
-                        Creator:
+                        Creator: 
                     </Typography>
                     <Grid container spacing={16}>
                         <Grid item md={true} sm={true} xs={true}>
@@ -55,7 +74,7 @@ class StartBet extends React.Component {
                                         {/*<Avatar alt="Avatar" src={googleLogo} />*/}
                                     </ListItemAvatar>
                                     <ListItemText
-                                        primary="juan.gomez345"
+                                        primary= {this.state.match.creator}
                                         secondary={
                                             <React.Fragment>
                                                 <Typography component="span" className={classes.inline} color="textPrimary">

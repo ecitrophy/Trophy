@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+
 import { withStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
@@ -51,6 +51,7 @@ class NewBet extends React.Component {
       }
 
   state = {
+    id: 1,
     name: '',
     age: '',
     multiline: 'Controlled',
@@ -71,9 +72,9 @@ class NewBet extends React.Component {
      this.props.history.push('/lobby');
     };
   handleSubmit(e){
-      var json = {"name":this.state.name,"creator":"juan.gomez345","bettors":{},"state":"WaitingForBets","winner":null,"id":1};
+      var json = {"name":this.state.name,"creator":"juan.gomez345","bettors":{},"state":"WaitingForBets","winner":null,"id":this.state.id};
         console.log(JSON.stringify(json));
-      fetch('https://gentle-wave-71675.herokuapp.com/matcheslist', {
+      fetch('http://localhost:8080/matcheslist', {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
@@ -82,10 +83,10 @@ class NewBet extends React.Component {
           body: JSON.stringify(json)
         })
   .then((responseJson) => {
+    this.setState({id: this.state.id + 1});
     alert("se creó la partida");
     //this.props.history.push('/lobby');
   })
-      console.log("handkle submiit");
 
         /*let data = new FormData();
         data.append('file', this.state.file);*/
@@ -97,7 +98,6 @@ class NewBet extends React.Component {
         .catch(function (error) {
             console.log("failed post");
         });*/
-    console.log("handleeeee");
       /*e.preventDefault();
       var parse = JSON.parse(localStorage.tasks);
       parse.push(this.state);

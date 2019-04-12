@@ -20,7 +20,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import TrophyLogo from '../img/TrophyLogo1.png';
-import { Assignment, Alarm, AccountBalance, AssignmentReturn, ExpandLess, ExpandMore, StarBorder, AddShoppingCart, AccountBalanceWallet } from '@material-ui/icons';
+import { Assignment, Alarm, AssignmentReturn, ExpandLess, ExpandMore, StarBorder, AddShoppingCart, AccountBalanceWallet } from '@material-ui/icons';
 import { Collapse } from '@material-ui/core';
 
 import { withRouter } from 'react-router-dom';
@@ -174,38 +174,31 @@ class PersistentDrawerLeft extends React.Component {
           <Divider />
           <List>
 
-            {['Juan Gomez'].map((text, index) => (
-              <div  >
-              <ListItem onClick={this.renderProfile} button key={text}  >
+              <div>
+              <ListItem onClick={this.renderProfile} button  >
 
                 <ListItemIcon>{<AccountCircle />}</ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary='Juan Gomez' />
               </ListItem>
               </div>
-            ))}
           </List>
           <List>
-            {['Lobby'].map((text, index) => (
-              <ListItem onClick={this.renderLobby} button key={text}>
+              <ListItem onClick={this.renderLobby} button>
                 <ListItemIcon>{<Assignment /> }</ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary='Lobby'/>
               </ListItem>
-            ))}
           </List>
           <List>
-            {['Historial'].map((text, index) => (
-              <ListItem onClick={this.renderHistory}  button key={text}>
+              <ListItem  onClick={this.renderHistory}  button >
                 <ListItemIcon>{<Alarm /> }</ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary='Historial' />
               </ListItem>
-            ))}
           </List>
           <List>
-            {['Monedero'].map((text, index) => (
                 <>
-              <ListItem button onClick={this.handleClick} key={text}>
+              <ListItem  button onClick={this.handleClick}>
                 <ListItemIcon>{<AccountBalanceWallet />}</ListItemIcon>
-                <ListItemText primary={text} />
+                <ListItemText primary='Monedero' />
                 {this.state.nestedOpen ? <ExpandLess /> : <ExpandMore />}
               </ListItem>
               <Collapse in={this.state.nestedOpen} timeout="auto" unmountOnExit>
@@ -225,19 +218,15 @@ class PersistentDrawerLeft extends React.Component {
               </List>
               </Collapse>
               </>
-            ))}
           </List>
           <Divider />
           <List>
-            {['Log out'].map((text, index) => (
 
-              <ListItem button onClick={this.renderLogin}  key={text}>
+              <ListItem button onClick={this.renderLogin}  >
                 <ListItemIcon>{<AssignmentReturn />}</ListItemIcon>
-                <ListItemText inset primary={text} />
+                <ListItemText inset primary='Cerrar Sesion' />
 
               </ListItem>
-
-            ))}
           </List>
         </Drawer>
         <main
