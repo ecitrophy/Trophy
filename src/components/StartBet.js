@@ -34,7 +34,7 @@ class StartBet extends React.Component {
     constructor(props){
         super(props);
         this.state ={
-            match:{},
+            match:{'bettors':[]},
           };
 
     }
@@ -46,7 +46,7 @@ class StartBet extends React.Component {
             .then(data => {
             
                 this.setState({match: data})
-                console.log(data);
+                console.log(this.state.match.bettors);
             });
     }
     renderLobby= () =>{
@@ -66,7 +66,7 @@ class StartBet extends React.Component {
                     <Grid container spacing={16}>
                         <Grid item md={true} sm={true} xs={true}>
                             <List className={classes.root}>
-                                <ListItem alignItems="flex-start">
+                                <ListItem  alignItems="flex-start">
                                     <ListItemAvatar>
                                         <Avatar>
                                             <Mood/>
@@ -83,75 +83,42 @@ class StartBet extends React.Component {
                                             </React.Fragment>
                                         }
                                     />
+                                    
                                 </ListItem>
+                                
                             </List>
                         </Grid>
                         <Grid item md={true} sm={true} xs={true}>
                             <Typography variant="h5" component="h3">
-                                Bet: $5000
+                                Bet: {this.state.match.currentBet}
                             </Typography>
                         </Grid>
                     </Grid>
                 </Paper>
                 <h3>Bettors</h3>
                 <List>
-                    <ListItem>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <Mood/>
-                            </Avatar>
-                            {/*<Avatar alt="Avatar" src={googleLogo} />*/}
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary="sergiorLol123"
-                            secondary="Begginer bettor"
-                        />
-                    </ListItem>
-                    <Divider/>
-                    <ListItem>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <Mood/>
-                            </Avatar>
-                            {/*<Avatar alt="Avatar" src={googleLogo} />*/}
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary="jigsawer35"
-                            secondary="Average bettor"
-                        />
-                    </ListItem>
-                    <Divider/>
-                    <ListItem>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <Mood/>
-                            </Avatar>
-                            {/*<Avatar alt="Avatar" src={googleLogo} />*/}
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary="juan.gomez345"
-                            secondary="Top bettor"
-                        />
-                        <ListItemSecondaryAction>
+                    {this.state.match.bettors.map((bettor,i)=>{
+                        return(
+                            <>
+                            <ListItem key={i}>
+                                <ListItemAvatar>
+                                    <Avatar>
+                                        <Mood/>
+                                    </Avatar>
+                                    {/*<Avatar alt="Avatar" src={googleLogo} />*/}
+                                </ListItemAvatar>
+                                <ListItemText
+                                    primary= {bettor.username}
+                                    secondary="Begginer bettor"
+                                />
+                                <div> Bet: {bettor.bet}</div>
+                            </ListItem>
 
-                            {/*<ListItemAvatar>*/}
-                            {/*<Avatar alt="Avatar" src={googleLogo} />*/}
-                            {/*</ListItemAvatar>*/}
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                    <Divider/>
-                    <ListItem>
-                        <ListItemAvatar>
-                            <Avatar>
-                                <Mood/>
-                            </Avatar>
-                            {/*<Avatar alt="Avatar" src={googleLogo} />*/}
-                        </ListItemAvatar>
-                        <ListItemText
-                            primary="kasjdu"
-                            secondary="Average bettor"
-                        />
-                    </ListItem>
+                            <Divider/>
+                            </>
+                        )
+                    })}
+                    
                 </List>
 
                 <Grid container justify="center" style={{ marginTop: '10px' }}>

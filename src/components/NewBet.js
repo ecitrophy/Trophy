@@ -72,7 +72,7 @@ class NewBet extends React.Component {
      this.props.history.push('/lobby');
     };
   handleSubmit(e){
-      var json = {"name":this.state.name,"creator":"juan.gomez345","bettors":{},"state":"WaitingForBets","winner":null,"id":this.state.id};
+      var json = {"name":this.state.name,"creator":"juan.gomez345","bettors":[{"username":"test-frontend1", "bet":"10"}, {"username":"test-frontend2", "bet":"15"}],"state":"WaitingForBets","winner":null,"id":this.state.id, "currentBet":0};
         console.log(JSON.stringify(json));
       fetch('http://localhost:8080/matcheslist', {
           method: 'POST',
@@ -162,7 +162,7 @@ class NewBet extends React.Component {
         color="primary"
         className="submit" onClick={this.handleSubmit}> Submit</Button>
 
-        <Link fullWidth to="/lobby">
+        <Link to="/lobby">
             <Button
                     
                     color="primary"
