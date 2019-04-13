@@ -1,5 +1,6 @@
 import React from 'react';
 import {Grid, TextField, Button} from '@material-ui/core';
+import {AxiosInstance} from "../AxiosInstance";
 
 
 
@@ -25,9 +26,20 @@ export class Exchange extends React.Component {
         }
         else{
             this.state.user.trophyPoints += parseInt(this.state.amount);
-            localStorage.setItem('user', JSON.stringify(this.state.user));
-            this.setState({user: JSON.parse(localStorage.getItem('user'))});
-            alert('Operacion realizada exitosamente!' + 'Has comprado: ' + this.state.amount + 'trophyPoints');
+            AxiosInstance.getInstance().post("/api/user/" + this.state.user.id, this.state.user,{
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
+
+                }})
+            .then(response => {
+                localStorage.setItem('user', JSON.stringify(this.state.user));
+                this.setState({user: JSON.parse(localStorage.getItem('user'))});
+                alert('Operacion realizada exitosamente!' + 'Has comprado: ' + this.state.amount + 'trophyPoints');
+            }).catch(function (error) {
+                console.log(error);
+                alert(error);
+            });
+            
             
         }
         
