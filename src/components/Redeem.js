@@ -5,9 +5,7 @@ import {AxiosInstance} from "../AxiosInstance";
 
 
 export class Redeem extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    
 
     state = {
         tPRate: 0.0333,
@@ -20,7 +18,7 @@ export class Redeem extends React.Component {
       };
     
     redeemTP= () =>{
-        console.log(this.state.amount);
+        //console.log(this.state.amount);
         if(this.state.amount> this.state.user.trophyPoints){
             alert('Monto excede trophyPoints actuales');
         }else if(this.state.amount <= 0){

@@ -5,9 +5,7 @@ import {AxiosInstance} from "../AxiosInstance";
 
 
 export class Exchange extends React.Component {
-    constructor(props){
-        super(props);
-    }
+    
 
     state = {
         tPRate: 0.0333,
@@ -20,7 +18,7 @@ export class Exchange extends React.Component {
       };
     
     buyTP= () =>{
-        console.log(this.state.amount);
+        //console.log(this.state.amount);
         if(this.state.amount <= 0){
             alert('El monto ingresado es incorrecto');
         }

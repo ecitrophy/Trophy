@@ -28,6 +28,7 @@ class LoginTab extends React.Component {
       super(props);
       this.state = {email: "", password: ""};
       localStorage.setItem("accessToken", "");
+      localStorage.setItem("user", "");
       this.handleSubmit = this.handleSubmit.bind(this);
       this.handleEmailChange = this.handleEmailChange.bind(this);
       this.handlePasswordChange = this.handlePasswordChange.bind(this);

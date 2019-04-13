@@ -73,8 +73,8 @@ class NewBet extends React.Component {
      this.props.history.push('/lobby');
     };
   handleSubmit(e){
-      var json = {"name":this.state.name,"creator": this.state.user.userName,"bettors":[{"username":"test-frontend1", "bet":"10"}, {"username":"test-frontend2", "bet":"15"}],"state":"WaitingForBets","winner":null,"id":this.state.id, "currentBet":0};
-        console.log(JSON.stringify(json));
+      var json = {"name":this.state.name,"creator": this.state.user.userName,"bettors":[{"username":"test-frontend1", "bet":"10"}, {"username":"test-frontend2", "bet":"15"}],"state":"WaitingForBets","winner":null, "currentBet":0};
+        //console.log(JSON.stringify(json));
       fetch('http://localhost:8080/matcheslist', {
           method: 'POST',
           headers: {

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Paper, withStyles, Grid, Button, Divider} from '@material-ui/core';
+import {Paper, withStyles, Grid, Button, Divider,TextField} from '@material-ui/core';
 import { Mood } from '@material-ui/icons';
 import Avatar from "@material-ui/core/Avatar";
 import List from "@material-ui/core/List";
@@ -34,6 +34,7 @@ class StartBet extends React.Component {
         super(props);
         this.state ={
             match:{'bettors':[]},
+            user: JSON.parse(localStorage.getItem('user')),
           };
 
     }
@@ -45,7 +46,7 @@ class StartBet extends React.Component {
             .then(data => {
             
                 this.setState({match: data})
-                console.log(this.state.match.bettors);
+                //console.log(this.state.match.bettors);
             }).catch(function(){
                 alert('Ha ocurrido un error: Apuesta no existe');
                 
@@ -122,7 +123,23 @@ class StartBet extends React.Component {
                     })}
                     
                 </List>
-
+                {this.state.match.creator != this.state.user.userName ?
+                    <>
+                    <Grid container justify="center" style={{ marginTop: '10px' }}>
+                        LAS APUESTAS ESTAN ABIERTAS!
+                        
+                    </Grid>
+                    <Grid container justify="center" style={{ marginTop: '10px' }}>
+                        <TextField id="monto" label="Monto"  type="text" width="400px"   variant="outlined" autoFocus   />
+                    </Grid>
+                    <Grid container justify="center" style={{ marginTop: '10px' }}>
+                        <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>APOSTAR!</Button>
+                    </Grid>
+                    </> :
+                    <Grid container justify="center" style={{ marginTop: '10px' }}>
+                        <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>EMPEZAR!</Button>
+                    </Grid>
+                }
                 <Grid container justify="center" style={{ marginTop: '10px' }}>
                     <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Back</Button>
                 </Grid>
