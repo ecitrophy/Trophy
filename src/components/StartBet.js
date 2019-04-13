@@ -95,6 +95,9 @@ class StartBet extends React.Component {
                             <Typography variant="h5" component="h3">
                                 Total Bet: {this.state.match.currentBet}
                             </Typography>
+                            <Typography variant="h5" component="h3">
+                                Juego: {this.state.match.game}
+                            </Typography>
                         </Grid>
                     </Grid>
                 </Paper>
@@ -123,7 +126,7 @@ class StartBet extends React.Component {
                     })}
                     
                 </List>
-                {this.state.match.creator != this.state.user.userName ?
+                {this.state.match.creator !== this.state.user.userName ?
                     <>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
                         LAS APUESTAS ESTAN ABIERTAS!
@@ -136,12 +139,17 @@ class StartBet extends React.Component {
                         <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>APOSTAR!</Button>
                     </Grid>
                     </> :
+                    <>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
                         <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>EMPEZAR!</Button>
                     </Grid>
+                    <Grid container justify="center" style={{ marginTop: '10px' }}>
+                        <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Borrar apuesta</Button>
+                    </Grid>
+                    </>
                 }
                 <Grid container justify="center" style={{ marginTop: '10px' }}>
-                    <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Back</Button>
+                    <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Salir</Button>
                 </Grid>
             </div>
         );

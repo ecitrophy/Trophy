@@ -77,6 +77,7 @@ class LobbyTab extends React.Component {
                                     creator={value.creator}
                                     bettors={value.bettors}
                                     id={value.id}
+                                    game={value.game}
                                     match={value}
                                     >
                         </MatchCard>

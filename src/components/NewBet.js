@@ -29,15 +29,19 @@ const styles = theme => ({
 
 const currencies = [
   {
-    value: 'lol',
+    value: 'League Of Legends',
     label: 'League Of Legends',
   },
   {
-    value: 'fifa',
+    value: 'Clash Royale',
+    label: 'Clash Royale',
+  },
+  {
+    value: 'FIFA',
     label: 'FIFA',
   },
   {
-    value: 'hearthstone',
+    value: 'Hearthstone',
     label: 'Hearthstone',
   },
 ];
@@ -55,7 +59,7 @@ class NewBet extends React.Component {
     name: '',
     age: '',
     multiline: 'Controlled',
-    currency: '',
+    currency: 'none',
     file: null,
     user: JSON.parse(localStorage.getItem('user'))
   };
@@ -73,7 +77,7 @@ class NewBet extends React.Component {
      this.props.history.push('/lobby');
     };
   handleSubmit(e){
-      var json = {"name":this.state.name,"creator": this.state.user.userName,"bettors":[{"username":"test-frontend1", "bet":"10"}, {"username":"test-frontend2", "bet":"15"}],"state":"WaitingForBets","winner":null, "currentBet":0};
+      var json = {"name":this.state.name,"creator": this.state.user.userName,"bettors":[],"state":"WaitingForBets","winner":null, "currentBet":0, "game": this.state.currency};
         //console.log(JSON.stringify(json));
       fetch('http://localhost:8080/matcheslist', {
           method: 'POST',

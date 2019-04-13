@@ -9,6 +9,9 @@ import { withStyles } from '@material-ui/core/styles';
 
 import CardMedia from "@material-ui/core/CardMedia";
 import lolImg from "../img/lol.jpg";
+import fifaImg from "../img/fifa-match.jpg";
+import clashImg from "../img/clash.jpg";
+import hsImg from "../img/hearthstone.jpg";
 
 
 const styles = theme => ({
@@ -68,18 +71,31 @@ class MatchCard extends React.Component {
     };
     render() {
         const { classes } = this.props;
+        var img;
+        if(this.props.game === 'League Of Legends'){
+            img = lolImg;
+        }else if(this.props.game === 'FIFA'){
+            img = fifaImg;
+        }else if(this.props.game === 'Hearthstone'){
+            img = hsImg;
+        }else if(this.props.game === 'Clash Royale'){
+            img = clashImg;
+        }
         return(
         <div onClick={this.renderBet}>
             <Card  className={classes.card}>
                 <CardMedia
                     className={classes.cover}
-                    image={lolImg}
-                    title="LOL Image"
+                    image={img}
+                    title="Image"
                 />
                 <div className={classes.details}>
                     <CardContent className={classes.content}>
                         <Typography component="h5" variant="h5">
                             {this.props.name}
+                        </Typography>
+                        <Typography component="h6" variant="h6" >
+                            Game: {this.props.game}
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
                             No. Bettors: {Object.keys(this.props.bettors).length}/50
