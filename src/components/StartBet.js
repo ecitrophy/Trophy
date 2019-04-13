@@ -8,6 +8,7 @@ import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import { withRouter } from 'react-router-dom';
+import {AxiosInstance} from "../AxiosInstance";
 
 const styles = theme => ({
     margin: {
@@ -39,14 +40,9 @@ class StartBet extends React.Component {
 
     }
     componentDidMount(){
-        fetch('http://localhost:8080/matcheslist/' + this.props.match.params.id )
-            .then(
-                response => response.json()
-                )
-            .then(data => {
-            
-                this.setState({match: data})
-                //console.log(this.state.match.bettors);
+        AxiosInstance.getInstance().get('/matcheslist/' + this.props.match.params.id)
+            .then(response => {
+                this.setState({match: response.data})
             }).catch(function(){
                 alert('Ha ocurrido un error: Apuesta no existe');
                 

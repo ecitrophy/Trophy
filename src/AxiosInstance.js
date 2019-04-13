@@ -13,8 +13,11 @@ export class AxiosInstance {
         if(localStorage.getItem("accessToken")){
             instance = axios.create({
                 timeout: 1000,
-                headers: {'Authorization': 'Bearer ' + localStorage.getItem("accessToken")},
-                baseURL: "http://localhost:8080/"
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
+                },
+                baseURL: "https://gentle-wave-71675.herokuapp.com/"
             });
         }else{
             localStorage.setItem("page","login");

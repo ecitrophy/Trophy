@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField';
 import { Paper } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import {Link}  from "react-router-dom";
+import {AxiosInstance} from "../AxiosInstance";
 
 const styles = theme => ({
   container: {
@@ -79,21 +80,14 @@ class NewBet extends React.Component {
   handleSubmit(e){
       var json = {"name":this.state.name,"creator": this.state.user.userName,"bettors":[],"state":"WaitingForBets","winner":null, "currentBet":0, "game": this.state.currency};
         //console.log(JSON.stringify(json));
-      fetch('http://localhost:8080/matcheslist', {
-          method: 'POST',
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(json)
+      
+        AxiosInstance.getInstance().post('/matcheslist',JSON.stringify(json))
+        .then(response => {
+          alert("se creó la partida");
+          //this.props.history.push('/lobby');
+        }).catch(function(){
+          
         })
-  .then((responseJson) => {
-    this.setState({id: this.state.id + 1});
-    alert("se creó la partida");
-    //this.props.history.push('/lobby');
-  }).catch(function(){
-    
-  })
 
         /*let data = new FormData();
         data.append('file', this.state.file);*/

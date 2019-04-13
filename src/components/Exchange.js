@@ -24,11 +24,7 @@ export class Exchange extends React.Component {
         }
         else{
             this.state.user.trophyPoints += parseInt(this.state.amount);
-            AxiosInstance.getInstance().post("/api/user/" + this.state.user.id, this.state.user,{
-            headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
-
-                }})
+            AxiosInstance.getInstance().post("/api/user/" + this.state.user.id, this.state.user)
             .then(response => {
                 localStorage.setItem('user', JSON.stringify(this.state.user));
                 this.setState({user: JSON.parse(localStorage.getItem('user'))});
