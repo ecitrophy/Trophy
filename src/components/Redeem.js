@@ -32,7 +32,7 @@ export class Redeem extends React.Component {
             alert('Operacion realizada exitosamente!' + 'Has canjeado: ' + this.state.amount + 'trophyPoints');
             
         }
-        //this.state.user.trophyPoints -=
+        
     };
     render() {
         return (<div  >
