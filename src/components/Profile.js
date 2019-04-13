@@ -53,7 +53,7 @@ class Profile extends React.Component {
                                 {" — Ranking Position: 50"}
                                 <br/>
                                 <Typography component="span" className={classes.inline} color="textPrimary">
-                                    Total Trophy Point: 300
+                                    Total Trophy Points: {user.trophyPoints}
                                 </Typography>
                             </React.Fragment>
 
