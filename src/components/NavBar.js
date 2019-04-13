@@ -206,15 +206,15 @@ class PersistentDrawerLeft extends React.Component {
               <List component="div" disablePadding>
                   <ListItem onClick={this.renderRedeem}  button className={classes.nested}>
                   <ListItemIcon>
-                      <AddShoppingCart />
-                  </ListItemIcon>
-                  <ListItemText inset primary="Comprar" />
-                  </ListItem>
-                  <ListItem onClick={this.renderExchange} button className={classes.nested}>
-                  <ListItemIcon>
                       <StarBorder />
                   </ListItemIcon>
                   <ListItemText inset primary="Canjear" />
+                  </ListItem>
+                  <ListItem onClick={this.renderExchange} button className={classes.nested}>
+                  <ListItemIcon>
+                      <AddShoppingCart />
+                  </ListItemIcon>
+                  <ListItemText inset primary="Comprar" />
                   </ListItem>
               </List>
               </Collapse>

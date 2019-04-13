@@ -38,9 +38,12 @@ export class Exchange extends React.Component {
                 <Grid container direction="column" justify="space-between" alignItems="center"   >
                     <img src={require('../img/money.png')} style={{width:'250px'}} alt="money"/>
                     Trophy points actuales: {this.state.user.trophyPoints}
+
                     <Grid  item md={12} sm={12} xs={12} style={{ marginTop:'30px'}}>
                         <TextField id="monto" label="Monto" onChange={this.handleChange('amount')} type="text" width="160"  fullWidth  variant="outlined" autoFocus   />
                     </Grid>
+                    <br/>
+                    Valor: {Math.round(this.state.amount*this.state.tPRate * 1000)/1000} USD
                     <Grid item md={12} sm={12} xs={12} style={{ marginTop:'40px',marginBottom:'100px'}}>
                         <TextField id="seguridad" label="Código de seguridad" type="text" fullWidth  variant="outlined"   />
                     </Grid>
