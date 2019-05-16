@@ -26,7 +26,7 @@ export class Redeem extends React.Component {
         }
         else{
             this.state.user.trophyPoints -= this.state.amount;
-            AxiosInstance.getInstance().put("/api/user/"+ this.state.user.id , this.state.user)
+            AxiosInstance.getInstance().put("/api/user/" , this.state.user)
             .then(response => {
                 localStorage.setItem('user', JSON.stringify(this.state.user));
                 this.setState({user: JSON.parse(localStorage.getItem('user'))});

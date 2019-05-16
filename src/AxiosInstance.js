@@ -15,7 +15,8 @@ export class AxiosInstance {
                 timeout: 1000,
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
+                    'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
+                    'Access-Control-Allow-Origin': '*',
                 },
                 baseURL: "https://gentle-wave-71675.herokuapp.com/"
             });

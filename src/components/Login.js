@@ -59,19 +59,18 @@ class LoginTab extends React.Component {
 
                   },
               }).then((response) =>{
-                   alert("entró");
+                   // alert("entró");
 
                   let userInfo = response.data;
-                  alert(JSON.stringify(userInfo));
                   // userInfo.password = "*******";
                   localStorage.setItem("user", JSON.stringify(userInfo));
                   console.log(response.data);
               })
-              setTimeout(function (){}, 100);
+              // setTimeout(function (){}, 100);
               this.props.history.push('/lobby');
       }).catch(function (error) {
           console.log(error);
-          alert(error);
+          // alert(error);
 
 
       });

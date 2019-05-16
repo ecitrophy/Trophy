@@ -50,7 +50,10 @@ class App extends Component {
     );
 
     const LobbyView = () => (
+      <div>
+        <NavBar />
         <LobbyTab/>
+      </div>
     );
 
     const StartBetView = () => (
@@ -75,7 +78,6 @@ class App extends Component {
         <NavBar />
           <Route path="/redeem" component={RedeemView }/>
           <Route path="/history" component={HistoryView}/>
-          <Route path="/lobby" component={LobbyView}/>
           <Route path="/startbet/:id" component={StartBetView}/>
           <Route path="/newbet" component={CreateNewBetView}/>
           <Route path="/lobbyhistory" component={LobbyHistoryView}/>
@@ -90,7 +92,7 @@ class App extends Component {
     <div>
  		<div>
   		    <Switch>
-
+            <Route path="/lobby" component={LobbyView}/>
             <Route exact path="/register" component={RegisterView}/>
             <Route exact path="/" component={LoginView}/>
             {localStorage.getItem('accessToken')!==null&&localStorage.getItem('accessToken')!==""?  <Route component={InsideApp}/>:<div></div>}

@@ -34,18 +34,19 @@ class StartBet extends React.Component {
     constructor(props){
         super(props);
         this.state ={
-            match:{'bettors':[]},
+            match:{creator:{name:''},bettors:[]},
             user: JSON.parse(localStorage.getItem('user')),
           };
 
     }
     componentDidMount(){
-        AxiosInstance.getInstance().get('/matcheslist/' + this.props.match.params.id)
+        AxiosInstance.getInstance().get('/apimatch/match/' + this.props.match.params.id)
             .then(response => {
+              // alert(response);
                 this.setState({match: response.data})
-            }).catch(function(){
-                alert('Ha ocurrido un error: Apuesta no existe');
-                
+            }).catch(function(response){
+                alert('Ha ocurrido un error: Apuesta no existe'+response);
+
               });
     }
     renderLobby= () =>{
@@ -60,7 +61,7 @@ class StartBet extends React.Component {
                 </Grid>
                 <Paper className={classes.root} elevation={1}>
                     <Typography variant="h5" component="h3">
-                        Creator: 
+                        Creator:
                     </Typography>
                     <Grid container spacing={16}>
                         <Grid item md={true} sm={true} xs={true}>
@@ -73,7 +74,7 @@ class StartBet extends React.Component {
                                         {/*<Avatar alt="Avatar" src={googleLogo} />*/}
                                     </ListItemAvatar>
                                     <ListItemText
-                                        primary= {this.state.match.creator}
+                                        primary= {this.state.match.creator.name}
                                         secondary={
                                             <React.Fragment>
                                                 <Typography component="span" className={classes.inline} color="textPrimary">
@@ -82,15 +83,19 @@ class StartBet extends React.Component {
                                             </React.Fragment>
                                         }
                                     />
-                                    
+
                                 </ListItem>
-                                
+
                             </List>
                         </Grid>
                         <Grid item md={true} sm={true} xs={true}>
                             <Typography variant="h5" component="h3">
-                                Total Bet: {this.state.match.currentBet}
+                                Base Bet: {this.state.match.minimumBet}
                             </Typography>
+                            <Typography variant="h5" component="h3">
+                                Total Bet: {this.state.match.minimumBet*(1+this.state.match.bettors.length)}
+                            </Typography>
+
                             <Typography variant="h5" component="h3">
                                 Juego: {this.state.match.game}
                             </Typography>
@@ -113,24 +118,22 @@ class StartBet extends React.Component {
                                     primary= {bettor.username}
                                     secondary="Begginer bettor"
                                 />
-                                <div> Bet: {bettor.bet}</div>
+                                <div> Bet: {this.state.match.minimumBet}</div>
                             </ListItem>
 
                             <Divider/>
                             </>
                         )
                     })}
-                    
+
                 </List>
-                {this.state.match.creator !== this.state.user.userName ?
+                {this.state.match.creator.name != this.state.user.userName ?
                     <>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
                         LAS APUESTAS ESTAN ABIERTAS!
-                        
+
                     </Grid>
-                    <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <TextField id="monto" label="Monto"  type="text" width="400px"   variant="outlined" autoFocus   />
-                    </Grid>
+                    
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
                         <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>APOSTAR!</Button>
                     </Grid>

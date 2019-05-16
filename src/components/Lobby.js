@@ -36,19 +36,21 @@ class LobbyTab extends React.Component {
     }
 
     componentDidMount() {
-        AxiosInstance.getInstance().get("/matcheslist")
-            
-            .then(response => {
+        if(localStorage.getItem('accessToken')!==null&&localStorage.getItem('accessToken')!==""){
+          AxiosInstance.getInstance().get("/apimatch/matcheslist")
+              .then(response => {
 
-                //let matchesList = [{"name":"ECI Lol","creator":"juan.gomez345","bettors":{"user1":15,"user2":0,"user5":15,"user3":15,"user4":15},"state":"WaitingForBets","winner":null,"id":1}];
-                let matchesList = [];
-                response.data.forEach(function (match) {
-                    matchesList.push(match)
-                    //console.log(match);
+                  //let matchesList = [{"name":"ECI Lol","creator":"juan.gomez345","bettors":{"user1":15,"user2":0,"user5":15,"user3":15,"user4":15},"state":"WaitingForBets","winner":null,"id":1}];
+                  let matchesList = [];
+                  response.data.forEach(function (match) {
+                      matchesList.push(match)
+                      //console.log(match);
 
-                });
-                this.setState({matchesList: matchesList});
-            });
+                  });
+                  this.setState({matchesList: matchesList});
+              });
+        }
+
     }
     renderBet= () =>{
        this.props.history.push('/startbet');
@@ -61,7 +63,9 @@ class LobbyTab extends React.Component {
     render() {
         const { classes } = this.props;
         return (
+
             <div style={{display: 'flex', flexDirection: 'column',justifyContent: 'center'}}>
+            {localStorage.getItem('accessToken')!==null&&localStorage.getItem('accessToken')!==""?<div>
                 <SearchBar
                     style={{
                         margin: 20,
@@ -84,6 +88,8 @@ class LobbyTab extends React.Component {
                     )
                 })}
                 <Button  onClick={this.renderNewBet} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Create New Bet</Button>
+                </div>
+                :<div></div>}
             </div>
         );
     }
