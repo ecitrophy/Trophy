@@ -5,7 +5,7 @@ import {AxiosInstance} from "../AxiosInstance";
 
 
 export class Exchange extends React.Component {
-    
+
 
     state = {
         tPRate: 0.0333,
@@ -16,7 +16,7 @@ export class Exchange extends React.Component {
     handleChange = name => event => {
         this.setState({ [name]: event.target.value });
       };
-    
+
     buyTP= () =>{
         //console.log(this.state.amount);
         if(this.state.amount <= 0){
@@ -24,7 +24,7 @@ export class Exchange extends React.Component {
         }
         else{
             this.state.user.trophyPoints += parseInt(this.state.amount);
-            AxiosInstance.getInstance().post("/api/user/" + this.state.user.id, this.state.user)
+            AxiosInstance.getInstance().put("/api/user/" + this.state.user.id, this.state.user)
             .then(response => {
                 localStorage.setItem('user', JSON.stringify(this.state.user));
                 this.setState({user: JSON.parse(localStorage.getItem('user'))});
@@ -33,10 +33,10 @@ export class Exchange extends React.Component {
                 console.log(error);
                 alert(error);
             });
-            
-            
+
+
         }
-        
+
     };
     render() {
 

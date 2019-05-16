@@ -16,7 +16,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
 class App extends Component {
-  
+
   //   updateToken() {
   //    this.setState({token: localStorage.getItem('accessToken')});
   //    history.push('/lobby');

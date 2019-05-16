@@ -5,7 +5,7 @@ import {AxiosInstance} from "../AxiosInstance";
 
 
 export class Redeem extends React.Component {
-    
+
 
     state = {
         tPRate: 0.0333,
@@ -16,7 +16,7 @@ export class Redeem extends React.Component {
     handleChange = name => event => {
         this.setState({ [name]: event.target.value });
       };
-    
+
     redeemTP= () =>{
         //console.log(this.state.amount);
         if(this.state.amount> this.state.user.trophyPoints){
@@ -26,7 +26,7 @@ export class Redeem extends React.Component {
         }
         else{
             this.state.user.trophyPoints -= this.state.amount;
-            AxiosInstance.getInstance().post("/api/user/" + this.state.user.id, this.state.user)
+            AxiosInstance.getInstance().put("/api/user/"+ this.state.user.id , this.state.user)
             .then(response => {
                 localStorage.setItem('user', JSON.stringify(this.state.user));
                 this.setState({user: JSON.parse(localStorage.getItem('user'))});
@@ -35,17 +35,17 @@ export class Redeem extends React.Component {
                 console.log(error);
                 alert(error);
             });
-            
-            
+
+
         }
-        
+
     };
     render() {
         return (<div  >
                     <Grid container direction="column" justify="space-between" alignItems="center"   >
                         <img src={require('../img/TrophyPoints.png')} style={{width:'250px'}} alt="redeem"/>
                         Trophy points actuales: {this.state.user.trophyPoints}
-                        
+
                         <Grid  item md={12} sm={12} xs={12} style={{ marginTop:'30px'}}>
                             <TextField id="monto" label="Monto" onChange={this.handleChange('amount')} type="text" width="160"  fullWidth  variant="outlined" autoFocus   />
                             <br/>

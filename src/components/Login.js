@@ -52,15 +52,18 @@ class LoginTab extends React.Component {
               password: this.state.password
           }).then((response) => {
               localStorage.setItem("accessToken", response.data.accessToken);
-              axios.get("https://gentle-wave-71675.herokuapp.com/api/user/" + this.state.email,{
+              axios.get("https://gentle-wave-71675.herokuapp.com/api/user/email/" + this.state.email,{
                 headers: {
-                    
+
                     'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
 
                   },
               }).then((response) =>{
+                   alert("entró");
+
                   let userInfo = response.data;
-                  userInfo.password = "*******";
+                  alert(JSON.stringify(userInfo));
+                  // userInfo.password = "*******";
                   localStorage.setItem("user", JSON.stringify(userInfo));
                   console.log(response.data);
               })
