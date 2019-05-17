@@ -80,13 +80,13 @@ class NewBet extends React.Component {
   handleSubmit(e){
       var json = {"name":this.state.name,"creator": this.state.user.userName,"bettors":[],"state":"WaitingForBets","winner":null, "currentBet":0, "game": this.state.currency};
         //console.log(JSON.stringify(json));
-      
-        AxiosInstance.getInstance().post('/matcheslist',JSON.stringify(json))
+
+        AxiosInstance.getInstance().post('/apimatch/matcheslist',JSON.stringify(json))
         .then(response => {
           alert("se creó la partida");
           //this.props.history.push('/lobby');
         }).catch(function(){
-          
+
         })
 
         /*let data = new FormData();
@@ -165,7 +165,7 @@ class NewBet extends React.Component {
 
         <Link to="/lobby">
             <Button
-                    
+
                     color="primary"
                     className="submit" > Back
             </Button>

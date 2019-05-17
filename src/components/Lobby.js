@@ -44,7 +44,7 @@ class LobbyTab extends React.Component {
                   let matchesList = [];
                   response.data.forEach(function (match) {
                       matchesList.push(match)
-                      //console.log(match);
+                      console.log(match);
 
                   });
                   this.setState({matchesList: matchesList});
