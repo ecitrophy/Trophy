@@ -45,14 +45,15 @@ class LoginTab extends React.Component {
       }
   handleSubmit() {
 
-
-      axios.post("https://gentle-wave-71675.herokuapp.com/user/login",
+      // var url="https://gentle-wave-71675.herokuapp.com";
+      var url="http://localhost:8080";
+      axios.post(url+"/user/login",
           {
               email: this.state.email,
               password: this.state.password
           }).then((response) => {
               localStorage.setItem("accessToken", response.data.accessToken);
-              axios.get("https://gentle-wave-71675.herokuapp.com/api/user/email/" + this.state.email,{
+              axios.get(url+"/api/user/email/" + this.state.email,{
                 headers: {
 
                     'Authorization': 'Bearer ' + localStorage.getItem("accessToken")
@@ -63,11 +64,13 @@ class LoginTab extends React.Component {
 
                   let userInfo = response.data;
                   // userInfo.password = "*******";
+                  alert(JSON.stringify(userInfo));
                   localStorage.setItem("user", JSON.stringify(userInfo));
                   console.log(response.data);
+                    this.props.history.push('/lobby');
               })
               // setTimeout(function (){}, 100);
-              this.props.history.push('/lobby');
+
       }).catch(function (error) {
           console.log(error);
           // alert(error);

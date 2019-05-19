@@ -45,10 +45,11 @@ class RegisterTab extends React.Component {
       }
   handleSubmit() {
 
-
-      axios.post("https://gentle-wave-71675.herokuapp.com/user/register",
+      // var url="https://gentle-wave-71675.herokuapp.com";
+      var url="http://localhost:8080";
+      axios.post(url+"/api/user",
           {
-              username: this.state.username,
+              userName: this.state.username,
               name: this.state.name,
               email: this.state.email,
               password: this.state.password
@@ -59,7 +60,7 @@ class RegisterTab extends React.Component {
               this.props.history.push('/');
       }).catch(function (error) {
           console.log(error);
-          alert(error);
+          alert(error.data);
 
       });
   }
@@ -116,7 +117,7 @@ class RegisterTab extends React.Component {
                 </Grid>
 
                 <Grid container justify="center" style={{ marginTop: '10px' }}>
-                    <Button onClick={this.handleSubmit} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Sign In</Button>
+                    <Button onClick={this.handleSubmit} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Register</Button>
                 </Grid>
             </div>
         );

@@ -40,18 +40,30 @@ class StartBet extends React.Component {
 
     }
     componentDidMount(){
-        AxiosInstance.getInstance().get('/apimatch/match/' + this.props.match.params.id)
-            .then(response => {
-              // alert(response);
-                this.setState({match: response.data})
-            }).catch(function(response){
-                alert('Ha ocurrido un error: Apuesta no existe'+response);
-
-              });
+        this.getMatch();
     }
+    getMatch= () =>{
+      AxiosInstance.getInstance().get('/apimatch/match/' + this.props.match.params.id)
+          .then(response => {
+            // alert(response);
+              this.setState({match: response.data})
+          }).catch(function(response){
+              alert('Ha ocurrido un error: Apuesta no existe'+response);
+
+            });
+                };
     renderLobby= () =>{
                  this.props.history.push('/lobby');
                 };
+    joinRoom= () =>{
+        AxiosInstance.getInstance().put("/apimatch/adduser/"+ this.props.match.params.id , this.state.user)
+        .then(response => {
+            this.getMatch();
+        }).catch(function (error) {
+            console.log(error);
+            alert(error);
+        });
+    };
     render() {
         const { classes } = this.props;
         return (
@@ -115,7 +127,7 @@ class StartBet extends React.Component {
                                     {/*<Avatar alt="Avatar" src={googleLogo} />*/}
                                 </ListItemAvatar>
                                 <ListItemText
-                                    primary= {bettor.username}
+                                    primary= {bettor.userName}
                                     secondary="Begginer bettor"
                                 />
                                 <div> Bet: {this.state.match.minimumBet}</div>
@@ -133,9 +145,9 @@ class StartBet extends React.Component {
                         LAS APUESTAS ESTAN ABIERTAS!
 
                     </Grid>
-                    
+
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>APOSTAR!</Button>
+                        <Button  onClick={this.joinRoom} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>APOSTAR!</Button>
                     </Grid>
                     </> :
                     <>

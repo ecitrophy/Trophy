@@ -66,13 +66,9 @@ class LobbyTab extends React.Component {
 
             <div style={{display: 'flex', flexDirection: 'column',justifyContent: 'center'}}>
             {localStorage.getItem('accessToken')!==null&&localStorage.getItem('accessToken')!==""?<div>
-                <SearchBar
-                    style={{
-                        margin: 20,
-                        maxWidth: 800,
-                        display:'flex'
-                    }}
-                />
+
+
+
                 {this.state.matchesList.map((value,i)=>{
                     return(
                         <MatchCard className={classes.card} key={i}
@@ -87,7 +83,9 @@ class LobbyTab extends React.Component {
                         </MatchCard>
                     )
                 })}
-                <Button  onClick={this.renderNewBet} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Create New Bet</Button>
+                <div  container justify="center" >
+                  <Button  onClick={this.renderNewBet} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Create New Bet</Button>
+                </div >
                 </div>
                 :<div></div>}
             </div>
