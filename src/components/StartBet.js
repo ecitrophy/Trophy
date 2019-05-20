@@ -167,7 +167,7 @@ class StartBet extends React.Component {
                                 Base Bet: {this.state.match.minimumBet}
                             </Typography>
                             <Typography variant="h5" component="h3">
-                                Total Bet: {this.state.match.minimumBet*(1+this.state.match.bettors.length)}
+                                Total Bet: {this.state.match.minimumBet*(this.state.match.bettors.length)}
                             </Typography>
 
                             <Typography variant="h5" component="h3">
