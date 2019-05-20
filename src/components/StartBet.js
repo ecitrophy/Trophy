@@ -9,6 +9,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Typography from "@material-ui/core/Typography";
 import { withRouter } from 'react-router-dom';
 import {AxiosInstance} from "../AxiosInstance";
+// import {StompConnector} from "../StompConnector";
+import SockJsClient from 'react-stomp';
 
 const styles = theme => ({
     margin: {
@@ -38,6 +40,7 @@ class StartBet extends React.Component {
             user: JSON.parse(localStorage.getItem('user')),
             summoner:''
           };
+        this.clientRef=null;
         this.handleSummonerChange = this.handleSummonerChange.bind(this);
 
     }
@@ -62,23 +65,53 @@ class StartBet extends React.Component {
     renderLobby= () =>{
                  this.props.history.push('/lobby');
                 };
+    manageStomp= (eventx) =>{
+                  if(eventx.name!=null){
+                      this.getMatch();
+                  }
+                  else if(eventx==true){
+                    this.props.history.push('/lobby');
+
+                  }
+
+                };
     joinRoom= () =>{
-      // alert(this.state.summoner);
-      this.state.user.bets={default:{player:this.state.summoner,bet:this.state.match.minimumBet}};
-      // alert(JSON.stringify(this.state.user));
-        AxiosInstance.getInstance().put("/apimatch/adduser/"+ this.props.match.params.id , this.state.user)
-        .then(response => {
-            this.getMatch();
-        }).catch(function (error) {
-            console.log(error);
-            alert(error);
-        });
+      if(this.state.summoner!=''){
+        this.state.user.bets={default:{player:this.state.summoner,bet:this.state.match.minimumBet}};
+          AxiosInstance.getInstance().put("/apimatch/adduser/"+ this.props.match.params.id , this.state.user)
+          .then(response => {
+              this.sendMessageJoin();
+          }).catch(function (error) {
+              console.log(error);
+              alert(error);
+          });
+      }
+
+    };
+
+    sendMessageJoin= () =>{
+      // var socket = new SockJS('https://gentle-wave-71675.herokuapp.com/stompendpoint');
+      // this.clientRef.sendMessage('/app/newplayer.'+roomid, userid);
+      // this.clientRef.sendMessage("app/newplayer."+this.props.match.params.id, this.state.user.email);
+      this.clientRef.sendMessage("/app/newplayer."+this.props.match.params.id, this.state.user.email);
+      // this.clientRef.sendMessage('https://gentle-wave-71675.herokuapp.com/app/newplayer.'+roomid, userid);
+    };
+    sendMessageStart= () =>{
+      this.clientRef.sendMessage("/app/startroom."+this.props.match.params.id);
     };
 
     render() {
         const { classes } = this.props;
         return (
             <div className={classes.margin}>
+            <div>
+              <SockJsClient url='http://localhost:8080/handler' topics={["/topic/room."+this.state.match.id,"/topic/startroom."+this.state.match.id]}
+                  onMessage={(msg) => {this.manageStomp(msg) ;}}
+                  ref={ (client) => { this.clientRef = client }}
+                  onConnect={ () => { console.log("connected") ;} }
+                  />
+
+            </div>
                 <Grid container justify="center" style={{ marginTop: '10px' }}>
                     <h1>{this.state.match.name}</h1>
                 </Grid>
@@ -180,7 +213,7 @@ class StartBet extends React.Component {
                     </> :
                     <>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
-                        <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>EMPEZAR!</Button>
+                        <Button  onClick={this.sendMessageStart} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>EMPEZAR!</Button>
                     </Grid>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
                         <Button  onClick={this.renderLobby} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Borrar apuesta</Button>
