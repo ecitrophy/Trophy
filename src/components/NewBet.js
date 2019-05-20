@@ -82,7 +82,7 @@ class NewBet extends React.Component {
   handleSubmit(e){
     this.state.user.bets={default:{player:this.state.summoner,bet:this.state.minimum}};
       var json = {"name":this.state.name,"creator": this.state.user,"bettors":[],"state":"OPEN","winner":null, "minimumBet":Number(this.state.minimum), "game": "LEAGUEOFLEGENDS"};
-          alert(JSON.stringify(json));
+          // alert(JSON.stringify(json));
 
         AxiosInstance.getInstance().post('/apimatch',JSON.stringify(json))
         .then(response => {

@@ -98,7 +98,7 @@ class MatchCard extends React.Component {
                             Game: {this.props.game}
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
-                            No. Bettors: {Object.keys(this.props.bettors).length}/50
+                            No. Bettors: {Object.keys(this.props.bettors).length+1}
                         </Typography>
                     </CardContent>
                 </div>

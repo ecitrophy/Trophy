@@ -34,14 +34,21 @@ class StartBet extends React.Component {
     constructor(props){
         super(props);
         this.state ={
-            match:{creator:{name:''},bettors:[]},
+            match:{creator:{name:'',bets:{default:{player:''}}},bettors:[]},
             user: JSON.parse(localStorage.getItem('user')),
+            summoner:''
           };
+        this.handleSummonerChange = this.handleSummonerChange.bind(this);
 
     }
     componentDidMount(){
         this.getMatch();
     }
+    handleSummonerChange(e) {
+            this.setState({
+                summoner: e.target.value
+            });
+        }
     getMatch= () =>{
       AxiosInstance.getInstance().get('/apimatch/match/' + this.props.match.params.id)
           .then(response => {
@@ -56,6 +63,9 @@ class StartBet extends React.Component {
                  this.props.history.push('/lobby');
                 };
     joinRoom= () =>{
+      // alert(this.state.summoner);
+      this.state.user.bets={default:{player:this.state.summoner,bet:this.state.match.minimumBet}};
+      // alert(JSON.stringify(this.state.user));
         AxiosInstance.getInstance().put("/apimatch/adduser/"+ this.props.match.params.id , this.state.user)
         .then(response => {
             this.getMatch();
@@ -64,6 +74,7 @@ class StartBet extends React.Component {
             alert(error);
         });
     };
+
     render() {
         const { classes } = this.props;
         return (
@@ -86,7 +97,7 @@ class StartBet extends React.Component {
                                         {/*<Avatar alt="Avatar" src={googleLogo} />*/}
                                     </ListItemAvatar>
                                     <ListItemText
-                                        primary= {this.state.match.creator.name}
+                                        primary= {this.state.match.creator.userName}
                                         secondary={
                                             <React.Fragment>
                                                 <Typography component="span" className={classes.inline} color="textPrimary">
@@ -111,6 +122,9 @@ class StartBet extends React.Component {
                             <Typography variant="h5" component="h3">
                                 Juego: {this.state.match.game}
                             </Typography>
+                            <Typography variant="h5" component="h3">
+                                Apostó por: {this.state.match.creator.bets.default.player}
+                            </Typography>
                         </Grid>
                     </Grid>
                 </Paper>
@@ -132,7 +146,7 @@ class StartBet extends React.Component {
                                     primary= {bettor.userName}
                                     secondary="Begginer bettor"
                                 />
-                                <div> Bet: {this.state.match.minimumBet}</div>
+                                <div> {"Apostó por "+ bettor.bets.default.player+": "+this.state.match.minimumBet+" TP"}</div>
                             </ListItem>
 
                             <Divider/>
@@ -141,14 +155,26 @@ class StartBet extends React.Component {
                     })}
 
                 </List>
-                {this.state.match.creator.name != this.state.user.userName ?
+                {this.state.match.creator.id != this.state.user.id ?
                     <>
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
                         LAS APUESTAS ESTAN ABIERTAS!
 
                     </Grid>
 
+                    <TextField
+                      id="summoner"
+                      label="Your summoner election"
+                      fullWidth
+                      className={classes.textField}
+                      value={this.state.summoner}
+                      variant="outlined"
+                      onChange={this.handleSummonerChange}
+                      margin="normal"
+                    />
+
                     <Grid container justify="center" style={{ marginTop: '10px' }}>
+
                         <Button  onClick={this.joinRoom} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>APOSTAR!</Button>
                     </Grid>
                     </> :

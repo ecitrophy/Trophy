@@ -225,7 +225,7 @@ class PersistentDrawerLeft extends React.Component {
 
               <ListItem button onClick={this.renderLogin}  >
                 <ListItemIcon>{<AssignmentReturn />}</ListItemIcon>
-                <ListItemText inset primary='Cerrar Sesion' />
+                <ListItemText inset primary='Cerrar Sesión' />
 
               </ListItem>
           </List>

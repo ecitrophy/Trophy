@@ -7,7 +7,8 @@ var stomp = (function () {
 
     var connectAndSubscribe = function () {
         console.info('Connecting to WS...');
-        var socket = new SockJS('/stompendpoint');
+        var socket = new SockJS('http://localhost:8080/stompendpoint');
+        // var socket = new SockJS('https://gentle-wave-71675.herokuapp.com/stompendpoint');
         stompClient = Stomp.over(socket);
 
         //subscribe to /topic/TOPICXX when connections succeed
