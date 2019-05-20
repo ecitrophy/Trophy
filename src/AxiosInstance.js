@@ -18,8 +18,8 @@ export class AxiosInstance {
                     'Authorization': 'Bearer ' + localStorage.getItem("accessToken"),
                     'Access-Control-Allow-Origin': '*',
                 },
-                // baseURL: "https://gentle-wave-71675.herokuapp.com/"
-                baseURL: "http://localhost:8080"
+                baseURL: "https://gentle-wave-71675.herokuapp.com/"
+                //baseURL: "http://localhost:8080"
             });
         }else{
             localStorage.setItem("page","login");

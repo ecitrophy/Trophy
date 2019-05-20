@@ -35,8 +35,9 @@ const styles = theme => ({
 class StartBet extends React.Component {
     constructor(props){
         super(props);
+
         this.state ={
-            match:{creator:{name:'',bets:{default:{player:''}}},bettors:[]},
+            match:{creator:{name:'',bets:{[props.match.params.id]:{player:''}}},bettors:[]},
             user: JSON.parse(localStorage.getItem('user')),
             summoner:''
           };
@@ -73,6 +74,23 @@ class StartBet extends React.Component {
                     this.props.history.push('/lobby');
 
                   }
+                  else if(eventx.status!=null){
+                      var bool=false;
+                      for(var winner in eventx.winners){
+                          if(winner.id==this.state.user.id){
+                             bool=true;
+                             break;
+                          }
+                      }
+                      if(bool){
+                          alert("felicitaciones, ganaste la apuesta");
+                      }
+                      else{
+                          alert("Perdiste la apuesta");
+                      }
+
+
+                  }
 
                 };
     joinRoom= () =>{
@@ -105,7 +123,7 @@ class StartBet extends React.Component {
         return (
             <div className={classes.margin}>
             <div>
-              <SockJsClient url='http://localhost:8080/handler' topics={["/topic/room."+this.state.match.id,"/topic/startroom."+this.state.match.id]}
+              <SockJsClient url='https://gentle-wave-71675.herokuapp.com/handler' topics={["/topic/room."+this.state.match.id,"/topic/startroom."+this.state.match.id]}
                   onMessage={(msg) => {this.manageStomp(msg) ;}}
                   ref={ (client) => { this.clientRef = client }}
                   onConnect={ () => { console.log("connected") ;} }
@@ -156,7 +174,8 @@ class StartBet extends React.Component {
                                 Juego: {this.state.match.game}
                             </Typography>
                             <Typography variant="h5" component="h3">
-                                Apostó por: {this.state.match.creator.bets.default.player}
+
+                                Apostó por: {this.state.match.creator.bets[this.props.match.params.id]['player']}
                             </Typography>
                         </Grid>
                     </Grid>
@@ -179,7 +198,7 @@ class StartBet extends React.Component {
                                     primary= {bettor.userName}
                                     secondary="Begginer bettor"
                                 />
-                                <div> {"Apostó por "+ bettor.bets.default.player+": "+this.state.match.minimumBet+" TP"}</div>
+                                <div> {"Apostó por "+ bettor.bets[this.props.match.params.id]['player']+": "+this.state.match.minimumBet+" TP"}</div>
                             </ListItem>
 
                             <Divider/>
