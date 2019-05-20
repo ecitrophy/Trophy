@@ -1,5 +1,5 @@
 import React from 'react';
-import { withStyles, Button} from '@material-ui/core';
+import { withStyles, Button, Grid} from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 import MatchCard from './MatchCard';
 
@@ -83,9 +83,9 @@ class LobbyTab extends React.Component {
                         </MatchCard>
                     )
                 })}
-                <div  container justify="center" >
+                <Grid style={{ marginBottom: '20px' }} container justify="center" >
                   <Button  onClick={this.renderNewBet} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Create New Bet</Button>
-                </div >
+                </Grid >
                 </div>
                 :<div></div>}
             </div>

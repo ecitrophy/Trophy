@@ -81,7 +81,7 @@ class StartBet extends React.Component {
                                 <ListItem  keky='creator' alignItems="flex-start">
                                     <ListItemAvatar>
                                         <Avatar>
-                                            <Mood/>
+                                            <img style={{ width: '100%',height: '100%' }} src={require('../img/avatars/main.JPG')} />
                                         </Avatar>
                                         {/*<Avatar alt="Avatar" src={googleLogo} />*/}
                                     </ListItemAvatar>
@@ -119,10 +119,12 @@ class StartBet extends React.Component {
                     {this.state.match.bettors.map((bettor,i)=>{
                         return(
                             <>
-                            <ListItem key={i}>
+                            <ListItem key={i} >
+
                                 <ListItemAvatar>
                                     <Avatar>
-                                        <Mood/>
+                                      <img  style={{ width: '100%',height: '100%' }} src={require('../img/avatars/'+i%10+'.JPG')} />
+
                                     </Avatar>
                                     {/*<Avatar alt="Avatar" src={googleLogo} />*/}
                                 </ListItemAvatar>

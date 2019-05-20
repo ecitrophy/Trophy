@@ -61,6 +61,8 @@ class NewBet extends React.Component {
     age: '',
     multiline: 'Controlled',
     currency: 'none',
+    summoner:'',
+    minimum:'',
     file: null,
     user: JSON.parse(localStorage.getItem('user'))
   };
@@ -78,10 +80,11 @@ class NewBet extends React.Component {
      this.props.history.push('/lobby');
     };
   handleSubmit(e){
-      var json = {"name":this.state.name,"creator": this.state.user.userName,"bettors":[],"state":"WaitingForBets","winner":null, "currentBet":0, "game": this.state.currency};
-        //console.log(JSON.stringify(json));
+    this.state.user.bets={default:{player:this.state.summoner,bet:this.state.minimum}};
+      var json = {"name":this.state.name,"creator": this.state.user,"bettors":[],"state":"OPEN","winner":null, "minimumBet":Number(this.state.minimum), "game": "LEAGUEOFLEGENDS"};
+          alert(JSON.stringify(json));
 
-        AxiosInstance.getInstance().post('/apimatch/matcheslist',JSON.stringify(json))
+        AxiosInstance.getInstance().post('/apimatch',JSON.stringify(json))
         .then(response => {
           alert("se creó la partida");
           //this.props.history.push('/lobby');
@@ -110,16 +113,36 @@ class NewBet extends React.Component {
     const { classes } = this.props;
 
     return (
-      <Paper className={classes.container} justify="center">
+      <div>
         <TextField
           id="standard-name"
-          label="Name"
+          label="Name of room"
           fullWidth
           className={classes.textField}
           value={this.state.name}
           onChange={this.handleChange('name')}
           margin="normal"
         />
+        <TextField
+          id="summoner"
+          label="Your summoner election"
+          fullWidth
+          className={classes.textField}
+          value={this.state.summoner}
+          onChange={this.handleChange('summoner')}
+          margin="normal"
+        />
+        <TextField
+          id="summoner"
+          label="Minimum Bet"
+          fullWidth
+          className={classes.textField}
+          value={this.state.minimum}
+          onChange={this.handleChange('minimum')}
+          margin="normal"
+          type="number"
+        />
+
         <TextField
           id="standard-select-currency"
           select
@@ -171,7 +194,7 @@ class NewBet extends React.Component {
             </Button>
         </Link>
 
-      </Paper>
+      </div>
     );
   }
 }

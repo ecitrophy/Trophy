@@ -64,7 +64,7 @@ class LoginTab extends React.Component {
 
                   let userInfo = response.data;
                   // userInfo.password = "*******";
-                  alert(JSON.stringify(userInfo));
+                  // alert(JSON.stringify(userInfo));
                   localStorage.setItem("user", JSON.stringify(userInfo));
                   console.log(response.data);
                     this.props.history.push('/lobby');
@@ -118,7 +118,7 @@ class LoginTab extends React.Component {
                   <img src={googleLogo} alt="Facebook" height={58} width={200}/>
               </Grid>
               <Grid container justify="center" style={{ marginTop: '10px' }}>
-                  <Button onClick={this.renderRegister} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Sign In</Button>
+                  <Button onClick={this.renderRegister} variant="outlined" color="primary" style={{ textTransform: "none", maxWidth: '400px', minWidth: '400px'}}>Sign Up</Button>
               </Grid>
           </div>
         );

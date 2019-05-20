@@ -31,7 +31,7 @@ const styles = theme => ({
         paddingTop: theme.spacing.unit * 2,
         paddingBottom: theme.spacing.unit * 2,
     },
-    
+
     card: {
         display: 'flex',
         minWidth: 340,
@@ -59,20 +59,20 @@ const styles = theme => ({
     cover: {
         width: 150,
     }
-    
+
   });
 
-  
+
 class MatchCard extends React.Component {
 
-    
+
     renderBet= () =>{
         this.props.history.push('/startbet/' + this.props.id);
     };
     render() {
         const { classes } = this.props;
         var img;
-        if(this.props.game === 'League Of Legends'){
+        if(this.props.game === "LEAGUEOFLEGENDS"){
             img = lolImg;
         }else if(this.props.game === 'FIFA'){
             img = fifaImg;
@@ -103,11 +103,11 @@ class MatchCard extends React.Component {
                     </CardContent>
                 </div>
             </Card>
-            
+
         </div>
         );
     };
-    
+
 }
 
 
